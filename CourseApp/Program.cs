@@ -7,7 +7,7 @@ namespace CourseApp
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Cogit pnsole.WriteLine("Krasnov Nikita");
+            Console.WriteLine("Krasnov Nikita");
             Console.ReadLine();
         }
     }
