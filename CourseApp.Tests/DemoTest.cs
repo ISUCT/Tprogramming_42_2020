@@ -15,14 +15,14 @@ namespace CourseApp.Tests
         [InlineData(5, -3, 390626.097)]
         [InlineData(46, -2, 97336.965)]
 
-        public void TestCalcAllZeros(double a,  double x, double exp)
+        public void TestCalcAllZeros(double a, double x, double exp)
         {
             var actualResult = Program.Calc(a, x);
             Assert.Equal(exp, actualResult, 3);
         }
 
         [Fact]
-        public void TestTaskA()
+        public void TestTaskANormalCondition()
         {
             var res = Program.TaskA(2, 1, 3, 1);
             Assert.Equal(3, res.Length);
@@ -35,7 +35,21 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestTaskB()
+        public void TaskAXnGreaterXk()
+        {
+            var res = Program.TaskA(2, 3, 1, 1);
+            Assert.Empty(res);
+        }
+
+        [Fact]
+        public void TaskADxGreaterXkMinusXn()
+        {
+            var res = Program.TaskA(1, 1, 2, 3);
+            Assert.Empty(res);
+        }
+
+        [Fact]
+        public void TestTaskBNormalCondition()
         {
             int i = 0;
             double[] xItems = { 1, 2, 3, 4, 5 };
@@ -46,6 +60,20 @@ namespace CourseApp.Tests
             {
                 var (x, y) = res[i];
                 Assert.Equal(expY[i], x, 1);
+            }
+        }
+
+        [Fact]
+        public void TestEmptyTaskB()
+        {
+            double[] empty = { };
+            var result = Program.TaskB(1.6, empty);
+            for (int i = 0; i < empty.Length; i++)
+            {
+                var (x, y) = result[i];
+                var expEB = Program.Calc(empty[i], x);
+                Assert.Equal(empty[i], x, 1);
+                Assert.Equal(expEB, x, 1);
             }
         }
     }
