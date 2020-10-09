@@ -36,5 +36,38 @@ namespace CourseApp.Tests
                 Assert.Equal(expX[i], x, 1);
             }
         }
+
+        [Fact]
+        public void TestTaskAXkGraterXn()
+        {
+            var res = Program.TaskA(0.66, 0.26, 0.08);
+            Assert.Empty(res);
+        }
+
+        [Fact]
+        public void SizeTaskB()
+        {
+            double[] array = { 1, 2, 3, 4 };
+            var result = Program.TaskB(array);
+            for (int i = 0; i < array.Length; i++)
+            {
+                var (x, y) = result[i];
+                Assert.Equal(array[i], x, 1);
+                Assert.Equal(Program.Calc(array[i]), y, 1);
+            }
+        }
+
+        [Fact]
+        public void EmptyTaskB()
+        {
+            double[] zeroArray = { };
+            var result = Program.TaskB(zeroArray);
+            for (int i = 0; i < zeroArray.Length; i++)
+            {
+                var (x, y) = result[i];
+                Assert.Equal(zeroArray[i], x, 1);
+                Assert.Equal(Program.Calc(zeroArray[i]), y, 1);
+            }
+        }
     }
 }
