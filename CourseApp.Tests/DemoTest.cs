@@ -17,7 +17,7 @@ namespace CourseApp.Tests
         [InlineData(1.5, double.NaN)]
         [InlineData(-1, 996299.338)]
         [InlineData(-5, double.NaN)]
-        [InlineData(0, 225.652)]
+        [InlineData(0, 225.6516)]
         public void TestCalc(double x, double exp)
         {
             var actualResult = Program.Calc(x);
