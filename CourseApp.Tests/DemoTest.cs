@@ -24,15 +24,28 @@ namespace CourseApp.Tests
 
         [Theory]
         [InlineData(1.1, 0.09, 1.2, 2.2, 0.2, 6)]
-        public void TestTaskA(double a, double b, double xn, double xk, double dx, double exp)
+        public void FirstTestTaskA(double a, double b, double xn, double xk, double dx, double exp)
         {
             var res = Program.TaskA(a, b, xn, xk, dx);
             Assert.Equal(exp, res.Length);
             double[] expX = { 1.2, 1.4, 1.6, 1.8, 2.0, 2.2 };
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= exp - 1; i++)
             {
                 var (x, y) = res[i];
                 Assert.Equal(expX[i], x, 1);
+            }
+        }
+
+        [Theory]
+        [InlineData(1.1, 0.09, 1.2, 2.2, 0.2, 6)]
+        public void SecondTestTaskA(double a, double b, double xn, double xk, double dx, double exp)
+        {
+            var res = Program.TaskA(a, b, xn, xk, dx);
+            double[] expY = { 4.791, -0.071, 0.366, 0.455, 0.484, 0.495 };
+            for (int i = 0; i <= exp - 1; i++)
+            {
+                var (x, y) = res[i];
+                Assert.Equal(expY[i], y, 3);
             }
         }
 
