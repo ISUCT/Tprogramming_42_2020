@@ -6,8 +6,8 @@ namespace CourseApp
     {
         public static double Calc(double x)
         {
-            var first = Math.Pow( Math.Abs(Math.Pow(x, 2) - 2.5), 1 / 4.0);
-            var second = Math.Pow(Math.Log10(Math.Pow(x, 2)), 1 / 3.0);
+            var first = Math.Pow(Math.Abs(Math.Pow(x, 2) - 2.5), 1 / 4.0);
+            var second = Math.Cbrt(Math.Log10(Math.Pow(x, 2)));
             var y = first + second;
             return y;
         }
