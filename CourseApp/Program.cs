@@ -7,7 +7,7 @@ namespace CourseApp
         public static double Calc(double a, double b, double x)
         {
             var numerator = Math.Log10(Math.Pow(x, 2) - 1);
-            var denominator = Math.Log(((a * Math.Pow(x, 2)) - b) / Math.Log(5));
+            var denominator = Math.Log((a * Math.Pow(x, 2)) - b) / Math.Log(5);
             var y = numerator / denominator;
             return y;
         }

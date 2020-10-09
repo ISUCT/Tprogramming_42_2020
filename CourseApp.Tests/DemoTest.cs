@@ -13,9 +13,9 @@ namespace CourseApp.Tests
 
         [Theory]
         [InlineData(0, 0, 0, double.NaN)]
-        [InlineData(1.1, 0.09, 1.2, 4.791)]
+        [InlineData(1.1, 0.09, 1.2, -1.429)]
         [InlineData(1, 1, 1, double.NaN)]
-        [InlineData(1, 0, 1, double.PositiveInfinity)]
+        [InlineData(1, 0, 1, double.NegativeInfinity)]
         public void TestCalcAllZeros(double a, double b, double x, double exp)
         {
             var actualResult = Program.Calc(a, b, x);
@@ -41,7 +41,7 @@ namespace CourseApp.Tests
         public void SecondTestTaskA(double a, double b, double xn, double xk, double dx, double exp)
         {
             var res = Program.TaskA(a, b, xn, xk, dx);
-            double[] expY = { 4.791, -0.071, 0.366, 0.455, 0.484, 0.495 };
+            double[] expY = { -1.429, -0.039, 0.310, 0.453, 0.526, 0.568 };
             for (int i = 0; i <= exp - 1; i++)
             {
                 var (x, y) = res[i];
@@ -56,7 +56,7 @@ namespace CourseApp.Tests
             double[] xItems = { 1.21, 1.76, 2.53, 3.48, 4.52 };
             var res = Program.TaskB(1.1, 0.09, xItems);
             Assert.Equal(5, xItems.Length);
-            double[] expmas = { 5.865, 0.445, 0.501, 0.496, 0.489 };
+            double[] expmas = { -1.280, 0.432, 0.608, 0.652, 0.667 };
             foreach (var item in res)
             {
                 var (x, y) = item;
