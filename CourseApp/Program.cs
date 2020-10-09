@@ -14,16 +14,21 @@ namespace CourseApp
 
         public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
         {
-            var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
-            int i = 0;
-            for (var x = xn; x <= xk; x += dx)
+            if (xk > xn)
             {
-                var y = Calc(a, b, x);
-                res[i] = (x, y);
-                i++;
+                var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
+                int i = 0;
+                for (var x = xn; x <= xk; x += dx)
+                {
+                    var y = Calc(a, b, x);
+                    res[i] = (x, y);
+                    i++;
+                }
+
+                return res;
             }
 
-            return res;
+            return new(double, double)[0];
         }
 
         public static (double x, double y)[] TaskB(double a, double b, double[] xItems)
@@ -48,7 +53,7 @@ namespace CourseApp
             var taskA = TaskA(a, b, 0.77, 1.77, 0.2);
             foreach (var item in taskA)
             {
-                var(x, y) = item;
+                var (x, y) = item;
                 Console.WriteLine($"x={x}, y={y}");
             }
 
@@ -57,7 +62,7 @@ namespace CourseApp
             var taskB = TaskB(a, b, xItems);
             foreach (var item in taskB)
             {
-                var(x, y) = item;
+                var (x, y) = item;
                 Console.WriteLine($"x={x}, y={y}");
             }
 

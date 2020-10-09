@@ -32,5 +32,12 @@ namespace CourseApp.Tests
                 Assert.Equal(expX[i], x, 1);
             }
         }
+
+        [Fact]
+        public void TestTaskAXnGraterXn()
+        {
+            var res = Program.TaskA(2, 4.1, 3, 1, 1);
+            Assert.Empty(res);
+        }
     }
 }
