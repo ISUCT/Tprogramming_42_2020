@@ -4,7 +4,7 @@ namespace CourseApp
 {
     public class Program
     {
-        public static double Calc(double a, double b, double x)
+        public static double Calc(double a, double x)
         {
             var term1 = Math.Pow(a, Math.Pow(x, 2) - 1);
             var term2 = Math.Log10(Math.Pow(x, 2) - 1);
@@ -13,13 +13,13 @@ namespace CourseApp
             return y;
         }
 
-        public static(double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
+        public static(double x, double y)[] TaskA(double a, double xn, double xk, double dx)
         {
             var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
             int i = 0;
             for (var x = xn; x <= xk; x += dx)
             {
-                var y = Calc(a, b, x);
+                var y = Calc(a, x);
                 res[i] = (x, y);
                 i++;
             }
@@ -27,13 +27,13 @@ namespace CourseApp
             return res;
         }
 
-        public static(double x, double y)[] TaskB(double a, double b, double[] xItems)
+        public static(double x, double y)[] TaskB(double a, double[] xItems)
         {
             var res = new(double, double)[xItems.Length];
             int i = 0;
             foreach (var x in xItems)
             {
-                var y = Calc(a, b, x);
+                var y = Calc(a, x);
                 res[i] = (x, y);
                 i++;
             }
@@ -44,9 +44,8 @@ namespace CourseApp
         public static void Main(string[] args)
         {
             const double a = 1.6;
-            const double b = 0.0;
             Console.WriteLine($"--------- TASK A ----------");
-            var taskA = TaskA(a, b, 1.2, 3.7, 0.5);
+            var taskA = TaskA(a, 1.2, 3.7, 0.5);
             foreach (var item in taskA)
             {
                 var(x, y) = item;
@@ -55,7 +54,7 @@ namespace CourseApp
 
             Console.WriteLine($"--------- TASK B ----------");
             double[] xItems = { 1.28, 1.36, 2.47, 3.68, 4.56 };
-            var taskB = TaskB(a, b, xItems);
+            var taskB = TaskB(a, xItems);
             foreach (var item in taskB)
             {
                 var(x, y) = item;
