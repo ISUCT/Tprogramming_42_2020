@@ -16,7 +16,7 @@ namespace CourseApp.Tests
         [InlineData(1.1, 0.09, 1.2, -1.429)]
         [InlineData(1, 1, 1, double.NaN)]
         [InlineData(1, 0, 1, double.NegativeInfinity)]
-        public void TestCalcAllZeros(double a, double b, double x, double exp)
+        public void TestCalc(double a, double b, double x, double exp)
         {
             var actualResult = Program.Calc(a, b, x);
             Assert.Equal(exp, actualResult, 3);
@@ -50,6 +50,20 @@ namespace CourseApp.Tests
         }
 
         [Fact]
+        public void TaskAXnGreaterXk()
+        {
+            var res = Program.TaskA(1.1, 0.09, 2.2, 1.1, 0.2);
+            Assert.Empty(res);
+        }
+
+        [Fact]
+        public void TaskAForDx()
+        {
+            var res = Program.TaskA(1.1, 0.09, 1.2, 2.2, 2);
+            Assert.Empty(res);
+        }
+
+        [Fact]
         public void TestTaskB()
         {
             int i = 0;
@@ -62,6 +76,19 @@ namespace CourseApp.Tests
                 var (x, y) = item;
                 Assert.Equal(expmas[i], y, 3);
                 i++;
+            }
+        }
+
+        [Fact]
+        public void TestEmptyMassivTaskB()
+        {
+            double[] emptymas = { };
+            var result = Program.TaskB(1.1, 0.09, emptymas);
+            for (int i = 0; i < emptymas.Length; i++)
+            {
+                var (x, y) = result[i];
+                Assert.Equal(emptymas[i], x, 1);
+                Assert.Equal(Program.Calc(1.1, 0.09, emptymas[i]), y, 3);
             }
         }
     }
