@@ -46,6 +46,10 @@ namespace CourseApp
             {
                 Console.WriteLine($"Самолёт {name} летит со скростью {speed} без пассажиров");
             }
+            else if (speed < 0)
+            {
+                Console.WriteLine("Скорость задана неверно");
+            }
             else
             {
                 Console.WriteLine($"Самолёт {name} летит со скростью {speed} c {passengers} пассажирами");
