@@ -64,6 +64,19 @@ namespace CourseApp
 
             Console.WriteLine("Hello World!");
             Console.WriteLine("Nikita Pavlov");
+
+            Hero newHero = new Hero ("Dragonborn");
+            newHero.AssignClass();
+            newHero.AssignAttribute();
+            newHero.AssignLvl();
+            newHero.GetInfo();
+
+            Hero hero2 = new Hero (0);
+            hero2.ChooseName();
+            hero2.ChooseClass();
+            hero2.ChooseAttribute();
+            hero2.GetInfo();
+
             Console.ReadLine();
         }
     }
