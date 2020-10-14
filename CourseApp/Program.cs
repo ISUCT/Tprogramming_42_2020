@@ -14,7 +14,7 @@ namespace CourseApp
 
         public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
         {
-            if ((xk > xn) && (dx <= xk - xn))
+            if ((xk > xn) & (dx <= xk - xn))
             {
                 var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx)];
                 int i = 0;
@@ -66,9 +66,19 @@ namespace CourseApp
                 Console.WriteLine($"x={x}, y={y}");
             }
 
-            Console.WriteLine($"--------- Hello World----------");
+            Console.WriteLine("--------- Hello World----------");
             Console.WriteLine("Hello World!");
             Console.WriteLine("Knjazev Egor");
+            Console.WriteLine($"------------Classes------------\n");
+            var plane1 = new Plane();
+            plane1.GetInfo();
+            var plane2 = new Plane("Airbus A330-200", 200);
+            plane2.GetInfo();
+            plane2.CheckPlaces();
+            var plane3 = new Plane("IL-2", 600, 5, 6);
+            plane3.GetInfo();
+            plane3.CheckPlaces();
+            plane3.StopPlane();
             Console.ReadLine();
         }
     }
