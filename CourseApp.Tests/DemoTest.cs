@@ -5,7 +5,7 @@ namespace CourseApp.Tests
 {
     public class DemoTest
     {
-        [Theory]
+        /*[Theory]
         [InlineData(1, 1.107)]
         [InlineData(-100, 11.587)]
         [InlineData(100000, 318.382)]
@@ -88,6 +88,6 @@ namespace CourseApp.Tests
                 Assert.Equal(massive[i], x, 1);
                 Assert.Equal(Program.Calc(massive[i]), y, 1);
             }
-        }
+        }*/
     }
 }
