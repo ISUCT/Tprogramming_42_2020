@@ -71,14 +71,15 @@ namespace CourseApp
             Console.WriteLine("Knjazev Egor");
             Console.WriteLine($"------------Classes------------\n");
             var plane1 = new Plane();
-            plane1.GetInfo();
+            plane1.DisplayInfo();
             var plane2 = new Plane("Airbus A330-200", 200);
-            plane2.GetInfo();
+            plane2.DisplayInfo();
             plane2.CheckPlaces();
             var plane3 = new Plane("IL-2", 600, 5, 6);
-            plane3.GetInfo();
+            plane3.DisplayInfo();
             plane3.CheckPlaces();
             plane3.StopPlane();
+            plane3.DisplayInfo();
             Console.ReadLine();
         }
     }

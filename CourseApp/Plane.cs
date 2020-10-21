@@ -27,7 +27,7 @@ namespace CourseApp
             this.places = places;
         }
 
-        public void GetInfo()
+        public void DisplayInfo()
         {
             Console.WriteLine($"------------Получение информации о {name}------------");
             if (speed == 0 & name == "Untitled")
@@ -80,7 +80,7 @@ namespace CourseApp
         public void StopPlane()
         {
             speed = 0;
-            Console.WriteLine($"Самолёт {name} остановлен");
+            Console.WriteLine($"Самолёт {name} остановлен\n");
         }
     }
 }
