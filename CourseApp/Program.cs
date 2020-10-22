@@ -67,6 +67,7 @@ namespace CourseApp
             }
 
             Console.WriteLine("Hello World!");
+            Console.WriteLine("Yulia Strunnikova!");
             Console.ReadLine();
         }
     }
