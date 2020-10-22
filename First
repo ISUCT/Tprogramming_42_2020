@@ -1,0 +1,22 @@
+using System;
+
+namespace ProjectOne {
+	class MainClass {
+        static double Calc (double a, double b, double x, double x_step, double x_end)
+        {
+
+         var y = ( a * (Math.Pow(x,1/3))- b * (Math.Log(x,5))/(Math.Pow(Math.Log (x),3)) );
+              
+          
+        }
+
+		public static void Main (string[] args) {
+		 
+          double y = 0;
+          double a = 4.1;
+          double b = 2.7;
+          
+		  
+		}
+	}
+}
