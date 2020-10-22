@@ -13,6 +13,7 @@ namespace CourseApp.Tests
 
         [Theory]
         [InlineData(0, 0, 0, double.NaN)]
+        [InlineData(1, 1, 1, double.NaN)]
         [InlineData(0.8, 0.4, 1.23, 2.237)]
         [InlineData(0, 1, 2, 2.508)]
         [InlineData(0, -1, 0, double.NaN)]
@@ -32,6 +33,19 @@ namespace CourseApp.Tests
             {
                 var (x, y) = res[i];
                 Assert.Equal(expX[i], x, 1);
+            }
+        }
+
+        [Fact]
+        public void TestTaskB()
+        {
+            double[] emptymas = { };
+            var result = Program.TaskB(0.8, 0.4, emptymas);
+            for (int i = 0; i < emptymas.Length; i++)
+            {
+                var (x, y) = result[i];
+                Assert.Equal(emptymas[i], x, 1);
+                Assert.Equal(Program.Calc(0.8, 0.4, emptymas[i]), y, 3);
             }
         }
     }
