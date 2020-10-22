@@ -77,7 +77,7 @@ namespace CourseApp
             Plane plane2 = new Plane("Airbus A330-200", 200);
             plane2.DisplayInfo();
             plane2.CheckPlaces();
-            Plane plane3 = new Plane("IL-2", 200, 5, 6);
+            Plane plane3 = new Plane("IL-2", 300, 5, 6);
             plane3.DisplayInfo();
             plane3.CheckPlaces();
             plane3.StopPlane();
