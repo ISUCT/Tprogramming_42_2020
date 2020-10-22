@@ -19,12 +19,50 @@ namespace CourseApp
         {
         }
 
+        public Plane(string name, int passengers, int places)
+        : this(name, 0, passengers, places)
+        {
+        }
+
         public Plane(string name, int speed, int passengers, int places)
         {
             this.name = name;
             this.speed = speed;
             this.passengers = passengers;
             this.places = places;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
+
+        public int Speed
+        {
+            get
+            {
+                return speed;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    speed = 0;
+                }
+                else
+                {
+                    speed = value;
+                }
+            }
         }
 
         public void DisplayInfo()
