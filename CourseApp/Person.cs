@@ -35,61 +35,62 @@ namespace CourseApp
             this.temperament = temperament;
         }
 
-        public static int ChekAge(int age)
+        public int Age
+    {
+        get
         {
-            if (age <= 0)
-            {
-                age = 1;
-            }
-
             return age;
         }
 
-        public static string ChekTemperament(string temperament)
+        set
         {
-            string temperamentEntered;
-            temperamentEntered = temperament;
-            if ((temperamentEntered == "Sanguine") || (temperamentEntered == "Phlegmatic") || (temperamentEntered == "Choleric") || (temperamentEntered == "Melancholic") || (temperamentEntered == "Not defined"))
+            if (value < 1)
             {
-                temperament = temperamentEntered;
             }
             else
             {
-                temperament = "Fabricate";
+                age = value;
             }
-
-            return temperament;
         }
+    }
 
-        public static string ChekName(string name)
+     public string Temperament
         {
-            string nameEntered;
-            nameEntered = name;
-            if (!string.IsNullOrEmpty(nameEntered))
+            get
             {
-                name = nameEntered;
+                return temperament;
             }
-            else
+
+            set
             {
-                name = "Anonym";
+                string[] temperamentList = new string[] { "Sanguine", "Phlegmatic", "Choleric", "Melancholic", };
+                foreach (string i in temperamentList)
+                {
+                    if (i == value)
+                    {
+                        temperament = value;
+                        break;
+                    }
+                    else
+                    {
+                    }
+                }
             }
-
-            return name;
         }
 
-        public void GetAllInfo()
+        public void DisplayAllInfo()
         {
-            Console.WriteLine($"Name: {ChekName(name)}. Age: {ChekAge(age)}. Temperament: {ChekTemperament(temperament)}.");
+            Console.WriteLine($"Name: {name}. Age: {age}. Temperament: {temperament}.");
         }
 
-        public void GetNameAgeInfo()
+        public void DisplayNameAgeInfo()
         {
-            Console.WriteLine($"Name: {ChekName(name)}.  Age: {ChekAge(age)}.");
+            Console.WriteLine($"Name: {name}.  Age: {age}.");
         }
 
-        public void GetNameTemperamentInfo()
+        public void DisplayNameTemperamentInfo()
         {
-            Console.WriteLine($"Name: {ChekName(name)}. Temperament: {ChekTemperament(temperament)}.");
+            Console.WriteLine($"Name: {name}. Temperament: {temperament}.");
         }
     }
 }

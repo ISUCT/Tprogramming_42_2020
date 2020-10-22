@@ -70,16 +70,12 @@ namespace CourseApp
             Console.WriteLine("Hello World!");
             Console.WriteLine("Alexander Mokhnatkin");
             Console.WriteLine($"---------- Person ---------");
-            Console.WriteLine("Enter name");
-            string nameСharacter = Console.ReadLine();
-            Console.WriteLine("Enter age (number)");
-            int ageСharacter = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter temperament");
-            string temperamentСharacter = Console.ReadLine();
-            Person сharacter = new Person(nameСharacter, ageСharacter, temperamentСharacter);
-            сharacter.GetAllInfo();
-            сharacter.GetNameAgeInfo();
-            сharacter.GetNameTemperamentInfo();
+            Person p = new Person("Max");
+            p.Age = 0;
+            p.Temperament = "Zoomer";
+            p.DisplayAllInfo();
+            p.DisplayNameAgeInfo();
+            p.DisplayNameTemperamentInfo();
             Console.ReadLine();
         }
     }
