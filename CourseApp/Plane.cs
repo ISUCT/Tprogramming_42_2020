@@ -115,10 +115,10 @@ namespace CourseApp
             Console.WriteLine($"------------Места в {name} проверены------------\n");
         }
 
-        public void StopPlane()
+        public string StopPlane()
         {
             speed = 0;
-            Console.WriteLine($"Самолёт {name} остановлен\n");
+            return $"Самолёт {name} остановлен\n";
         }
     }
 }
