@@ -12,7 +12,7 @@ namespace CourseApp.Tests
         [InlineData(0, -244, 0, 0, 0, 0)]
         [InlineData(1232, 2324, 1232, 0, 0, 2863168)]
         [InlineData(1, 3, 1, 0, 0, 3)]
-        public void TetsOfGo(int inSpeed, int inTime, int inTurpleBeforeFirst, int inTurpleBeforeSecond, int inTurpleAtferFirst, int inTurpleAfterSecond)
+        public void TestOfGoAndGetInfo(int inSpeed, int inTime, int inTurpleBeforeFirst, int inTurpleBeforeSecond, int inTurpleAtferFirst, int inTurpleAfterSecond)
         {
             Car car1 = new Car(inSpeed, inTime);
             Tuple<int, int> resultTurpleFirst = car1.GetInfo();
