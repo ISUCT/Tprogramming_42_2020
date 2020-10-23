@@ -64,39 +64,22 @@ namespace CourseApp
                  } */
         public static void Main()
         {
-            Console.Write("Введите скорость автомобиля = ");
-            int getSpeed;
-            int.TryParse(Console.ReadLine(), out getSpeed);
-            Console.Write("Введите предполагаемое время движения = ");
-            int getTimeWay;
-            int.TryParse(Console.ReadLine(), out getTimeWay);
-            if (getSpeed != 0 || getTimeWay != 0)
+            int getSpeed = 1;
+            int getTimeWay = 12;
+            Car car1 = new Car();
+            if (getSpeed != 0 && getTimeWay == 0)
             {
-                Console.WriteLine("Нажмите любую клавишу, чтобы продолжить");
-                Console.ReadKey();
-                Car car1 = new Car();
-                if (getSpeed != 0 && getTimeWay == 0)
-                {
-                    car1 = new Car(getSpeed);
-                }
-                else
-                {
-                    car1 = new Car(getSpeed, getTimeWay);
-                }
-
-                car1.Go();
-                car1.Stop();
-                Console.WriteLine($"Автомобиль проехал {car1.GetWay()} км");
-                Console.WriteLine("До новых встреч");
+                car1 = new Car(getSpeed);
             }
             else
             {
-                Console.WriteLine("Недостаточно данных для начала движения");
+                car1 = new Car(getSpeed, getTimeWay);
             }
 
-            Console.WriteLine(" ");
-            Console.WriteLine("Нажмите любую клавишу для продолжения");
-            Console.ReadKey();
+            Console.WriteLine(car1.Go());
+            Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
+            car1.Stop();
+            Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
         }
     }
 }
