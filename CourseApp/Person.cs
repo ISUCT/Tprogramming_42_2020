@@ -35,26 +35,34 @@ namespace CourseApp
             this.temperament = temperament;
         }
 
+        private enum TemperamentList
+                {
+                    Sanguine,
+                    Phlegmatic,
+                    Choleric,
+                    Melancholic,
+                }
+
         public int Age
-    {
-        get
         {
-            return age;
+            get
+            {
+                return age;
+            }
+
+            set
+            {
+                if (value < 1)
+                {
+                }
+                else
+                {
+                    age = value;
+                }
+            }
         }
 
-        set
-        {
-            if (value < 1)
-            {
-            }
-            else
-            {
-                age = value;
-            }
-        }
-    }
-
-     public string Temperament
+        public string Temperament
         {
             get
             {
@@ -63,16 +71,12 @@ namespace CourseApp
 
             set
             {
-                string[] temperamentList = new string[] { "Sanguine", "Phlegmatic", "Choleric", "Melancholic", };
-                foreach (string i in temperamentList)
+                foreach (TemperamentList i in Enum.GetValues(typeof(TemperamentList)))
                 {
-                    if (i == value)
+                    if (i.ToString() == value)
                     {
                         temperament = value;
                         break;
-                    }
-                    else
-                    {
                     }
                 }
             }

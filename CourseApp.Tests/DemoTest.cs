@@ -51,15 +51,18 @@ namespace CourseApp.Tests
         [Fact]
         public void TestTaskBNormalCondition()
         {
-            int i = 0;
-            double[] xItems = { 1, 2, 3, 4, 5 };
-            double[] expY = { 1, 2, 3, 4, 5, 6 };
-            var res = Program.TaskB(1.6, xItems);
-            Assert.Equal(5, xItems.Length);
-            foreach (var item in res)
             {
-                var (x, y) = res[i];
-                Assert.Equal(expY[i], x, 1);
+                int i = 0;
+                double[] xItems = { 1.21, 1.76, 2.53, 3.48, 4.52 };
+                var res = Program.TaskB(1.1, xItems);
+                Assert.Equal(5, xItems.Length);
+                double[] expmas = { 2.2, 2.2, 2.7, 4.1, 7.8 };
+                foreach (var item in res)
+                {
+                    var (x, y) = item;
+                    Assert.Equal(expmas[i], y, 1);
+                    i++;
+                }
             }
         }
 
@@ -68,38 +71,7 @@ namespace CourseApp.Tests
         {
             double[] empty = { };
             var result = Program.TaskB(1.6, empty);
-            for (int i = 0; i < empty.Length; i++)
-            {
-                var (x, y) = result[i];
-                var expEB = Program.Calc(empty[i], x);
-                Assert.Equal(empty[i], x, 1);
-                Assert.Equal(expEB, x, 1);
-            }
-        }
-
-        [Theory]
-        [InlineData(0, 1)]
-        [InlineData(-500, 1)]
-        [InlineData(12, 12)]
-        public void TestAge(int a, int exp)
-        {
-             Person person = new Person();
-             person.Age = a;
-             Assert.Equal(person.Age, exp);
-        }
-
-        [Theory]
-        [InlineData("Sanguine",  "Sanguine")]
-        [InlineData("Phlegmatic", "Phlegmatic")]
-        [InlineData("Choleric", "Choleric")]
-        [InlineData("Melancholic", "Melancholic")]
-        [InlineData("Zoomer", "Not defined")]
-        [InlineData("Boomer", "Not defined")]
-        public void TestTemperament(string a, string exp)
-        {
-             Person person = new Person();
-             person.Temperament = a;
-             Assert.Equal(person.Temperament, exp);
+            Assert.Equal(empty.Length, result.Length);
         }
     }
 }
