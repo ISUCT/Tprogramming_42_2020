@@ -12,8 +12,10 @@ namespace CourseApp.Tests
         }
 
         [Theory]
-        [InlineData(0, 0, 0, double.NaN)]
-        [InlineData(2, 4.1, 0.77, 2.671)]
+        [InlineData(1, 1, 1, 4.348)]
+        [InlineData(2, 2, 2, 49.592)]
+        [InlineData(-2, -2, 2, double.NaN)]
+        [InlineData(0, 0, 0, 0)]
         public void TestCalcAllZeros(double a, double b, double x, double exp)
         {
             var actualResult = Program.Calc(a, b, x);
@@ -34,10 +36,16 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestTaskAXnGraterXn()
+        public void TestTaskB()
         {
-            var res = Program.TaskA(2, 4.1, 3, 1, 1);
-            Assert.Empty(res);
+            double[] xItems = { 9.1, 0.28, 0.06, 0.26, 3.05 };
+            var res = Program.TaskB(0.12, 2, xItems);
+            double[] expY = { 634.8, 0.5, 0.1, 0.4, 53.8 };
+            for (int i = 0; i <= 4; i++)
+            {
+                var (x, y) = res[i];
+                Assert.Equal(expY[i], y, 1);
+            }
         }
     }
 }
