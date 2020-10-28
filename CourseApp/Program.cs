@@ -26,7 +26,7 @@ namespace CourseApp
             return res;
         }
 
-        return new(double, double)[0];
+            return new(double, double)[0];
         }
 
         public static (double x, double y)[] TaskB(double[] xItems)
@@ -66,16 +66,17 @@ namespace CourseApp
             Console.WriteLine("Nikita Pavlov");
 
             Hero newHero = new Hero ("Dragonborn");
-            newHero.AssignClass();
-            newHero.AssignAttribute();
+            newHero.SetRandomClass();
+            newHero.SetRandomAttribute();
             newHero.AssignLvl();
-            newHero.GetInfo();
+            newHero.DisplayInfo();
 
-            Hero hero2 = new Hero (0);
+            Hero hero2 = new Hero ();
             hero2.ChooseName();
-            hero2.ChooseClass();
-            hero2.ChooseAttribute();
-            hero2.GetInfo();
+            hero2.Lvl = 0;
+            hero2.ClassHero = "Warrior";
+            hero2.AttributeHero = "Strength";
+            hero2.DisplayInfo();
 
             Console.ReadLine();
         }

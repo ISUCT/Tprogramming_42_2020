@@ -9,62 +9,143 @@ namespace CourseApp
         private string attribute;
         private int lvl;
 
-        public Hero (string n)
+        public Hero ()
+        : this(" ", null, null, 0)
         {
-            name = n;
         }
 
-        public Hero (int l)
+        public Hero (string name)
+        : this(name, " ", " ", 0)
         {
-            lvl = l;
+            this.name = name;
         }
 
-        public Hero (string n, string a, string c, int l)
+        public Hero (string name, string attribute, string heroClass, int lvl)
         {
-            name = n;
-            attribute = a;
-            heroClass = c;
-            lvl = l;
+            this.name = name;
+            this.attribute = attribute;
+            this.heroClass = heroClass;
+            this.lvl = lvl;
         }
 
-        public void GetInfo()
+        private enum HeroClasses
         {
-            Console.WriteLine($"Имя: {name}, Атрибут: {attribute}, Класс: {heroClass}, Уровень: {lvl}");
+            Warrior,
+            Archer,
+            Mage,
         }
 
-        public void AssignClass()
+        private enum HeroAttribute
+        {
+            Strength,
+            Agility,
+            Intellect,
+        }
+
+        public string ClassHero
+        {
+            get
+            {
+                return heroClass;
+            }
+
+            set
+            {
+                foreach (HeroClasses i in Enum.GetValues(typeof(HeroClasses)))
+                {
+                    if (i.ToString() == value)
+                    {
+                        heroClass = value;
+                        break;
+                    }
+                    else
+                    {
+                    }
+                }
+            }
+        }
+
+        public string AttributeHero
+        {
+            get
+            {
+                return attribute;
+            }
+
+            set
+            {
+                foreach (HeroAttribute i in Enum.GetValues(typeof(HeroAttribute)))
+                {
+                    if (i.ToString() == value)
+                    {
+                        attribute = value;
+                        break;
+                    }
+                    else
+                    {
+                    }
+                }
+            }
+        }
+
+        public int Lvl
+        {
+            get
+            {
+                return lvl;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    lvl = 0;
+                }
+                else
+                {
+                    lvl = value;
+                }
+            }
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine ($"Имя: {name}, Атрибут: {attribute}, Класс: {heroClass}, Уровень: {lvl}");
+        }
+
+        public void SetRandomClass()
         {
             Random rand = new Random();
             int randomNumber = rand.Next(1, 3);
-            if (randomNumber == 1)
+            switch (randomNumber)
             {
-                heroClass = "Warrior";
-            }
-            else if (randomNumber == 2)
-            {
-                heroClass = "Archer";
-            }
-            else
-            {
-                heroClass = "Mage";
+                case 1:
+                    heroClass = "Warrior";
+                    break;
+                case 2:
+                    heroClass = "Archer";
+                    break;
+                case 3:
+                    heroClass = "Mage";
+                    break;
             }
         }
 
-        public void AssignAttribute()
+        public void SetRandomAttribute()
         {
             Random rand = new Random();
             int randomNumber = rand.Next(1, 3);
-            if (randomNumber == 1)
+            switch (randomNumber)
             {
-                attribute = "Strength";
-            }
-            else if (randomNumber == 2)
-            {
-                attribute = "Agility";
-            }
-            else
-            {
-                attribute = "Intellect";
+                case 1:
+                    attribute = "Strength";
+                    break;
+                case 2:
+                    attribute = "Agility";
+                    break;
+                case 3:
+                    attribute = "Intellect";
+                    break;
             }
         }
 
@@ -78,42 +159,6 @@ namespace CourseApp
         {
             Console.WriteLine("Введите имя персонажа: ");
             name = Console.ReadLine();
-        }
-
-        public void ChooseClass()
-        {
-            string classEntered;
-            while (heroClass == null || heroClass.Length == 0)
-            {
-                Console.WriteLine("Выберите класс персонажа из предложенных:\n1.Warrior\r\n2.Archer\r\n3.Mage");
-                classEntered = Console.ReadLine();
-                    if (classEntered == "Warrior" | classEntered == "Archer" | classEntered == "Mage")
-                    {
-                        heroClass = classEntered;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Такого класса не существует");
-                    }
-            }
-        }
-
-        public void ChooseAttribute()
-        {
-            string attributeEntered;
-            while (attribute == null || attribute.Length == 0)
-            {
-                Console.WriteLine("Выберите основной атрибут персонажа из предложенных:\n1.Strength\r\n2.Agility\r\n3.Intellect");
-                attributeEntered = Console.ReadLine();
-                    if (attributeEntered == "Strength" | attributeEntered == "Agility" | attributeEntered == "Intellect")
-                    {
-                        attribute = attributeEntered;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Такого атрибута не существует");
-                    }
-            }
         }
     }
 }
