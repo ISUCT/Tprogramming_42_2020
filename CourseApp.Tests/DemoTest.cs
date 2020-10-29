@@ -84,12 +84,7 @@ namespace CourseApp.Tests
         {
             double[] emptymas = { };
             var result = Program.TaskB(1.1, 0.09, emptymas);
-            for (int i = 0; i < emptymas.Length; i++)
-            {
-                var (x, y) = result[i];
-                Assert.Equal(emptymas[i], x, 1);
-                Assert.Equal(Program.Calc(1.1, 0.09, emptymas[i]), y, 3);
-            }
+            Assert.Equal(emptymas.Length, result.Length);
         }
     }
 }

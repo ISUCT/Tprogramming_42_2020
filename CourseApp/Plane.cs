@@ -96,23 +96,27 @@ namespace CourseApp
             Console.WriteLine($"------------Информация получена------------\n");
         }
 
-        public void CheckPlaces()
+        public bool CheckPlaces()
         {
             Console.WriteLine($"------------Проверка мест в {name}------------");
             if (places == passengers)
             {
                 Console.WriteLine($"Все места заняты");
+                Console.WriteLine($"------------Проверка завершена------------\n");
+                return false;
             }
             else if (places > passengers)
             {
                 Console.WriteLine($"В самолёте есть свободые места");
+                Console.WriteLine($"------------Проверка завершена------------\n");
+                return true;
             }
             else
             {
                 Console.WriteLine($"В самолёте не хватает мест");
+                Console.WriteLine($"------------Проверка завершена------------\n");
+                return false;
             }
-
-            Console.WriteLine($"------------Места в {name} проверены------------\n");
         }
 
         public string StopPlane()
