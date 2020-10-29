@@ -62,8 +62,8 @@ namespace CourseApp
         Console.WriteLine("Hello World!");
         Console.WriteLine("Maksim Zorin");
         Console.WriteLine("-----------------------------------");
-        double getSpeed = -45.7;
-        double getTimeWay = -12.5;
+        double getSpeed = 45.7;
+        double getTimeWay = 12.5;
         Car car1 = new Car();
         if (getSpeed != 0 && getTimeWay == 0)
         {
@@ -78,7 +78,6 @@ namespace CourseApp
         Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
         car1.Stop();
         Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
-        Console.ReadLine();
         }
     }
 }
