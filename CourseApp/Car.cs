@@ -4,65 +4,97 @@ namespace CourseApp
 {
     public class Car
     {
-       private int speed;
-       private int way;
-       private int timeWay;
+       private double speed;
+       private double way;
+       private double timeWay;
 
        public Car()
        {
-           speed = 0;
-           timeWay = 0;
-           way = 0;
+           this.Speed = 0;
+           this.TimeWay = 0;
+           this.Way = 0;
        }
 
-       public Car(int getSpeed)
+       public Car(double speed)
        {
-           speed = getSpeed;
-           timeWay = 0;
-           way = 0;
+           this.Speed = speed;
+           this.TimeWay = 0;
+           this.Way = 0;
        }
 
-       public Car(int getSpeed, int getTimeWay)
+       public Car(double speed, double timeWay)
        {
-           speed = getSpeed;
-           if (timeWay >= 0)
-           {
-                timeWay = getTimeWay;
-           }
-           else
-           {
-               timeWay = 0;
-           }
-
-           way = 0;
+           this.Speed = speed;
+           this.TimeWay = timeWay;
+           this.Way = 0;
        }
 
-       public int Go()
+       public double Speed
        {
-           if (timeWay < 0)
-           {
-               timeWay = 0;
-           }
-
-           way = Math.Abs(speed) * timeWay;
-           if (speed > 0)
+           get
            {
                return speed;
            }
-           else
+
+           set
            {
-               return speed = 0;
+               if (value < 0)
+               {
+                   this.speed = 0;
+               }
+               else
+               {
+                   this.speed = value;
+               }
            }
+       }
+
+       public double TimeWay
+       {
+           get
+           {
+               return timeWay;
+           }
+
+           set
+           {
+               if (value < 0)
+               {
+                   this.timeWay = 0;
+               }
+               else
+               {
+                   this.timeWay = value;
+               }
+           }
+       }
+
+       public double Way
+       {
+           get
+           {
+               return way;
+           }
+
+           set
+           {
+               this.way = value;
+           }
+       }
+
+       public void Go()
+       {
+           this.Way = Math.Abs(this.Speed) * this.TimeWay;
        }
 
        public void Stop()
        {
-           speed = 0;
+           this.Speed = 0;
        }
 
-       public Tuple<int, int> GetInfo()
+       public Tuple<double, double> GetInfo()
        {
-           Tuple<int, int> ans = new Tuple<int, int>(speed, way);
+           Tuple<double, double> ans = new Tuple<double, double>(this.Speed, this.Way);
            return ans;
        }
     }
