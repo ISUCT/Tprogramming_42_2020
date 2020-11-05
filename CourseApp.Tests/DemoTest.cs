@@ -17,7 +17,7 @@ namespace CourseApp.Tests
         [InlineData(0.8, 0.4, 1.23, 2.237)]
         [InlineData(0, 1, 2, 2.508)]
         [InlineData(0, -1, 0, double.NaN)]
- public void TestCalcAllZeros(double a, double b, double x, double exp)
+        public void TestCalcAllZeros(double a, double b, double x, double exp)
         {
             var actualResult = Program.Calc(a, b, x);
             Assert.Equal(exp, actualResult, 3);
@@ -41,12 +41,16 @@ namespace CourseApp.Tests
         {
             double[] emptymas = { };
             var result = Program.TaskB(0.8, 0.4, emptymas);
-            for (int i = 0; i < emptymas.Length; i++)
-            {
-                var (x, y) = result[i];
-                Assert.Equal(emptymas[i], x, 1);
-                Assert.Equal(Program.Calc(0.8, 0.4, emptymas[i]), y, 3);
-            }
+            var a = result.Length;
+            Assert.Equal(0, a);
+        }
+
+        [Fact]
+        public void ArrayOfThreeElements()
+        {
+            double[] xTest = { 1, 2, 3 };
+            var result = Program.TaskB(0.8, 0.4, xTest);
+            Assert.Equal(3, result.Length);
         }
     }
 }
