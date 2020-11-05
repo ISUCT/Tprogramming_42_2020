@@ -14,7 +14,7 @@ namespace CourseApp
 
         public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
         {
-            var res = new (double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
+            var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
             int i = 0;
             for (var x = xn; x <= xk; x += dx)
             {
@@ -28,7 +28,7 @@ namespace CourseApp
 
         public static (double x, double y)[] TaskB(double a, double b, double[] xItems)
         {
-            var res = new (double, double)[xItems.Length];
+            var res = new(double, double)[xItems.Length];
             int i = 0;
             foreach (var x in xItems)
             {
