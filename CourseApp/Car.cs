@@ -1,6 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
-[assembly:InternalsVisibleTo("CourseApp.Tests")]
 
 namespace CourseApp
 {
@@ -71,7 +69,7 @@ namespace CourseApp
            }
        }
 
-       internal double Way
+       private double Way
        {
            get
            {

@@ -6,60 +6,35 @@ namespace CourseApp.Tests
     public class TestOfClass
     {
         [Theory]
-        [InlineData(0)]
-        [InlineData(12.8)]
-        [InlineData(-325.1)]
-        [InlineData(122.6 / 9.5)]
-        [InlineData(65.9)]
-        public void TestValuesofPropertiesSpeed(double speed)
+        [InlineData(0, 0)]
+        [InlineData(12.8, 12.8)]
+        [InlineData(-325.1, 0)]
+        [InlineData(122.6 / 9.5, 122.6 / 9.5)]
+        [InlineData(65.9, 65.9)]
+        public void TestValuesofPropertiesSpeed(double speed, double exp)
         {
             Car car1 = new Car(speed);
             var resultSpeedBeforeStop = car1.Speed;
             car1.Go();
             car1.Stop();
             var resultSpeedAfterStop = car1.Speed;
-            if (speed < 0)
-            {
-                speed = 0;
-            }
-
-            Assert.Equal(speed, resultSpeedBeforeStop);
+            Assert.Equal(exp, resultSpeedBeforeStop);
             Assert.Equal(0, resultSpeedAfterStop);
         }
 
         [Theory]
-        [InlineData(0, 0)]
-        [InlineData(12.8, 100.3)]
-        [InlineData(-325.1, 3.5)]
-        [InlineData(122.6 / 9.5, 23.3)]
-        [InlineData(65.9, -23)]
-        public void TestValuesofPropertiesTime(double speed, double time)
+        [InlineData(0, 0, 0)]
+        [InlineData(12.8, 100.3, 100.3)]
+        [InlineData(-325.1, 3.5, 3.5)]
+        [InlineData(122.6 / 9.5, 23.3, 23.3)]
+        [InlineData(65.9, -23, 0)]
+        public void TestValuesofPropertiesTime(double speed, double time, double expTime)
         {
             Car car1 = new Car(speed, time);
             var resultTimeWay = car1.TimeWay;
             car1.Go();
             car1.Stop();
-            if (time < 0)
-            {
-                time = 0;
-            }
-
-            Assert.Equal(time, resultTimeWay);
-        }
-
-        [Theory]
-        [InlineData(0, 0, 0)]
-        [InlineData(12.8, 100.3, 1283.84)]
-        [InlineData(-325.1, 3.5, 0)]
-        [InlineData(122.6 / 9.5, 23.3, 300.693)]
-        [InlineData(65.9, -23, 0)]
-        public void TestValuesofPropertiesWay(double speed, double time, double expWay)
-        {
-            Car car1 = new Car(speed, time);
-            car1.Go();
-            var resultWay = car1.Way;
-            car1.Stop();
-            Assert.Equal(expWay, resultWay, 3);
+            Assert.Equal(expTime, resultTimeWay);
         }
 
         [Fact]
@@ -105,35 +80,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestNegativeWtihZeroGetInfo()
-        {
-            Car car1 = new Car(0, -244.45);
-            car1.Go();
-            Tuple<double, double> resultBeforeFirst = car1.GetInfo();
-            car1.Stop();
-            Tuple<double, double> resultAfterFirst = car1.GetInfo();
-            Assert.Equal(0, resultBeforeFirst.Item1);
-            Assert.Equal(0, resultBeforeFirst.Item2);
-            Assert.Equal(0, resultAfterFirst.Item1);
-            Assert.Equal(0, resultAfterFirst.Item2);
-        }
-
-        [Fact]
-        public void TestPositiveValues_01()
-        {
-            Car car1 = new Car(1232.7, 2324.3);
-            car1.Go();
-            Tuple<double, double> resultBeforeFIrst = car1.GetInfo();
-            car1.Stop();
-            Tuple<double, double> resultAfterFIrst = car1.GetInfo();
-            Assert.Equal(1232.7, resultBeforeFIrst.Item1);
-            Assert.Equal(2865164.61, resultBeforeFIrst.Item2, 2);
-            Assert.Equal(0, resultAfterFIrst.Item1);
-            Assert.Equal(2865164.61, resultAfterFIrst.Item2, 2);
-        }
-
-        [Fact]
-        public void TestPositiveValues_02()
+        public void TestPositiveValues()
         {
             Car car2 = new Car(1.7, 3 / 0.47);
             car2.Go();
