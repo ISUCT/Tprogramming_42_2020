@@ -42,26 +42,42 @@ namespace CourseApp
 
         public static void Main(string[] args)
         {
-            Console.WriteLine($"--------- TASK A --------------");
-            var taskA = TaskA(1.25, 3.25, 0.4);
-            foreach (var item in taskA)
-            {
-                var(x, y) = item;
-                Console.WriteLine($"x={x}, y={y}");
-            }
+        Console.WriteLine($"--------- TASK A --------------");
+        var taskA = TaskA(1.25, 3.25, 0.4);
+        foreach (var item in taskA)
+        {
+            var(x, y) = item;
+            Console.WriteLine($"x={x}, y={y}");
+        }
 
-            Console.WriteLine($"--------- TASK B --------------");
-            double[] xItems = { 1.84, 2.71, 3.81, 4.56, 5.62 };
-            var taskB = TaskB(xItems);
-            foreach (var item in taskB)
-            {
-                var(x, y) = item;
-                Console.WriteLine($"x={x}, y={y}");
-            }
+        Console.WriteLine($"--------- TASK B --------------");
+        double[] xItems = { 1.84, 2.71, 3.81, 4.56, 5.62 };
+        var taskB = TaskB(xItems);
+        foreach (var item in taskB)
+        {
+            var(x, y) = item;
+            Console.WriteLine($"x={x}, y={y}");
+        }
 
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Maksim Zorin");
-            Console.ReadLine();
+        Console.WriteLine("Hello World!");
+        Console.WriteLine("Maksim Zorin");
+        Console.WriteLine("-----------------------------------");
+        double getSpeed = 45.7;
+        double getTimeWay = 12.5;
+        Car car1 = new Car();
+        if (getSpeed != 0 && getTimeWay == 0)
+        {
+            car1 = new Car(getSpeed);
+        }
+        else
+        {
+            car1 = new Car(getSpeed, getTimeWay);
+        }
+
+        car1.Go();
+        Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
+        car1.Stop();
+        Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
         }
     }
 }
