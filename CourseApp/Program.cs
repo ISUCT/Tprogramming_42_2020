@@ -67,7 +67,18 @@ namespace CourseApp
             }
 
             Console.WriteLine("Hello World!");
-            Console.ReadLine();
+
+            var platypus1 = new Platypus("PL1", 5);
+
+            platypus1.Age = 5;
+            platypus1.Hello();
+            platypus1.Age = 15;
+            platypus1.Hello();
+            platypus1.Age = -10;
+            platypus1.Hello();
+
+            var platypus2 = new Platypus("PL1", 5);
+            Console.WriteLine(platypus2.Count);
         }
     }
 }
