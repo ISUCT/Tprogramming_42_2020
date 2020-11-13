@@ -8,7 +8,7 @@ namespace CourseApp.Tests
         [Fact]
         public void TestStopPlane()
         {
-            Plane testplane = new Plane("IL-2", 300, 5, 6);
+            Plane testplane = new Plane("IL-6", 300, 5, 6);
             var actualResult = testplane.Stop();
             Assert.Equal(0, actualResult);
         }
