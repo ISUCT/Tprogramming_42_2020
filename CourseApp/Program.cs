@@ -71,17 +71,27 @@ namespace CourseApp
             Console.WriteLine("Knjazev Egor");
             Console.WriteLine($"------------Classes------------\n");
             Plane plane1 = new Plane();
-            plane1.DisplayInfo();
+            Console.WriteLine(plane1);
             plane1.Name = "Oplane";
-            plane1.DisplayInfo();
-            Plane plane2 = new Plane("Airbus A330-200", 200);
-            plane2.DisplayInfo();
-            plane2.CheckPlaces();
-            Plane plane3 = new Plane("IL-2", 300, 5, 6);
-            plane3.DisplayInfo();
-            plane3.CheckPlaces();
-            plane3.StopPlane();
-            plane3.DisplayInfo();
+            Console.WriteLine(plane1);
+            Plane plane2 = new Plane("Airbus A330-200", 200, 300);
+            Console.WriteLine(plane2);
+            plane2.IsPlaces();
+            Plane plane3 = new Plane("IL-2", 6, 5, 300);
+            Console.WriteLine(plane3);
+            plane3.IsPlaces();
+            plane3.Stop();
+            Console.WriteLine(plane3);
+            Vehicle car1 = new Car("Renault", 4, 100);
+            Console.WriteLine(car1);
+            Vehicle[] vehicles = new Vehicle[] { plane1, plane2, car1 };
+            foreach (var vehicle in vehicles)
+            {
+                vehicle.MakeSound();
+                vehicle.Stop();
+            }
+
+            ((Car)car1).Beep();
             Console.ReadLine();
         }
     }
