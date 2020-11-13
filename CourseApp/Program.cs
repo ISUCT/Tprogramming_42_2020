@@ -74,10 +74,28 @@ namespace CourseApp
             car1 = new Car(getSpeed, getTimeWay);
         }
 
+        Bicycle bicycle1 = new Bicycle(15);
+        Console.WriteLine("Bicycle: ");
+        Console.WriteLine(bicycle1);
+        Console.WriteLine(" ");
+        bicycle1.Go();
+        Motocycle motocycle1 = new Motocycle(100, 90);
+        motocycle1.Go();
         car1.Go();
+        Console.WriteLine("Car: ");
         Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
         car1.Stop();
         Console.WriteLine($"{car1.GetInfo().Item1} {car1.GetInfo().Item2}");
+        motocycle1.Stop();
+        Console.WriteLine(" ");
+        Console.WriteLine("Motocycle: ");
+        Console.WriteLine(motocycle1);
+        bicycle1.Stop();
+        Transport[] elementsOfSuperClass = new Transport[] { car1, bicycle1, motocycle1 };
+        foreach (var transport in elementsOfSuperClass)
+        {
+            transport.CheckAreThisArea();
+        }
         }
     }
 }

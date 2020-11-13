@@ -11,7 +11,7 @@ namespace CourseApp.Tests
         [InlineData(-325.1, 0)]
         [InlineData(122.6 / 9.5, 122.6 / 9.5)]
         [InlineData(65.9, 65.9)]
-        public void TestValuesofPropertiesSpeed(double speed, double exp)
+        public void TestValuesofPropertiesSpeed_Car(double speed, double exp)
         {
             Car car1 = new Car(speed);
             var resultSpeedBeforeStop = car1.Speed;
@@ -28,7 +28,7 @@ namespace CourseApp.Tests
         [InlineData(-325.1, 3.5, 3.5)]
         [InlineData(122.6 / 9.5, 23.3, 23.3)]
         [InlineData(65.9, -23, 0)]
-        public void TestValuesofPropertiesTime(double speed, double time, double expTime)
+        public void TestValuesofPropertiesTime_Car(double speed, double time, double expTime)
         {
             Car car1 = new Car(speed, time);
             var resultTimeWay = car1.TimeWay;
@@ -38,7 +38,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestOfZeroGetInfo()
+        public void TestOfZeroGetInfo_Car()
         {
             Car car1 = new Car(0, 0);
             car1.Go();
@@ -52,7 +52,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestPositiveWtihZeroGetInfo_01()
+        public void TestPositiveWtihZeroGetInfo_Car01()
         {
             Car car1 = new Car(234.7, 0);
             car1.Go();
@@ -66,7 +66,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestPositiveWtihZeroGetInfo_02()
+        public void TestPositiveWtihZeroGetInfo_Car02()
         {
             Car car2 = new Car(0, 567.9);
             car2.Go();
@@ -80,7 +80,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestPositiveValues()
+        public void TestPositiveValues_Car()
         {
             Car car2 = new Car(1.7, 3 / 0.47);
             car2.Go();
@@ -94,7 +94,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestNegativeValues()
+        public void TestNegativeValues_Car()
         {
             Car car1 = new Car(-546.2, -82.9);
             car1.Go();
@@ -105,6 +105,84 @@ namespace CourseApp.Tests
             Assert.Equal(0, resultBeforeFIrst.Item2);
             Assert.Equal(0, resultAfterFIrst.Item1);
             Assert.Equal(0, resultAfterFIrst.Item2);
+        }
+
+        [Theory]
+        [InlineData(-23.3, 0)]
+        [InlineData(55.1, 0)]
+        public void TestValuesofPropertiesSpeed_Bicycle(double speed, double exp)
+        {
+            Bicycle bicycle1 = new Bicycle(speed);
+            var resultSpeedBeforeStop = bicycle1.Speed;
+            bicycle1.Go();
+            bicycle1.Stop();
+            var resultSpeedAfterStop = bicycle1.Speed;
+            Assert.Equal(exp, resultSpeedBeforeStop);
+            Assert.Equal(0, resultSpeedAfterStop);
+        }
+
+        [Theory]
+        [InlineData(23.5, -23, 0)]
+        public void TestValuesofPropertiesTime_Bicycle(double speed, double time, double expTime)
+        {
+            Bicycle bicycle1 = new Bicycle(speed, time);
+            var resultTimeWay = bicycle1.TimeWay;
+            bicycle1.Go();
+            bicycle1.Stop();
+            Assert.Equal(expTime, resultTimeWay);
+        }
+
+        [Fact]
+        public void TestOfZeroGetInfo_Bicycle()
+        {
+            Bicycle bicycle1 = new Bicycle(0, 0);
+            bicycle1.Go();
+            Tuple<double, double> resultBefore = bicycle1.GetInfo();
+            bicycle1.Stop();
+            Tuple<double, double> resultAfter = bicycle1.GetInfo();
+            Assert.Equal(0, resultBefore.Item1);
+            Assert.Equal(0, resultBefore.Item2);
+            Assert.Equal(0, resultAfter.Item1);
+            Assert.Equal(0, resultAfter.Item2);
+        }
+
+        [Theory]
+        [InlineData(-23.3, 0)]
+        [InlineData(412, 0)]
+        public void TestValuesofPropertiesSpeed_Motocycle(double speed, double exp)
+        {
+            Motocycle motocycle1 = new Motocycle(speed);
+            var resultSpeedBeforeStop = motocycle1.Speed;
+            motocycle1.Go();
+            motocycle1.Stop();
+            var resultSpeedAfterStop = motocycle1.Speed;
+            Assert.Equal(exp, resultSpeedBeforeStop);
+            Assert.Equal(0, resultSpeedAfterStop);
+        }
+
+        [Theory]
+        [InlineData(23.5, -23, 0)]
+        public void TestValuesofPropertiesTime_Motocycle(double speed, double time, double expTime)
+        {
+            Bicycle bicycle1 = new Bicycle(speed, time);
+            var resultTimeWay = bicycle1.TimeWay;
+            bicycle1.Go();
+            bicycle1.Stop();
+            Assert.Equal(expTime, resultTimeWay);
+        }
+
+        [Fact]
+        public void TestOfZeroGetInfo_Motocycle()
+        {
+            Bicycle bicycle1 = new Bicycle(0, 0);
+            bicycle1.Go();
+            Tuple<double, double> resultBefore = bicycle1.GetInfo();
+            bicycle1.Stop();
+            Tuple<double, double> resultAfter = bicycle1.GetInfo();
+            Assert.Equal(0, resultBefore.Item1);
+            Assert.Equal(0, resultBefore.Item2);
+            Assert.Equal(0, resultAfter.Item1);
+            Assert.Equal(0, resultAfter.Item2);
         }
     }
 }
