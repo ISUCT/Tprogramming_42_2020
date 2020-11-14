@@ -28,20 +28,6 @@ namespace CourseApp
             this.lvl = lvl;
         }
 
-        private enum HeroClasses
-        {
-            Warrior,
-            Archer,
-            Mage,
-        }
-
-        private enum HeroAttribute
-        {
-            Strength,
-            Agility,
-            Intellect,
-        }
-
         public string ClassHero
         {
             get
@@ -57,9 +43,6 @@ namespace CourseApp
                     {
                         heroClass = value;
                         break;
-                    }
-                    else
-                    {
                     }
                 }
             }
@@ -80,9 +63,6 @@ namespace CourseApp
                     {
                         attribute = value;
                         break;
-                    }
-                    else
-                    {
                     }
                 }
             }
@@ -128,7 +108,7 @@ namespace CourseApp
                 case 3:
                     heroClass = "Mage";
                     break;
-            }
+                }
         }
 
         public void SetRandomAttribute()
