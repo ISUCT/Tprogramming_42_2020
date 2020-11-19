@@ -2,102 +2,38 @@ using System;
 
 namespace CourseApp
 {
-    public class Plane
+    public class Plane : Vehicle
     {
-        private int speed;
-        private int passengers;
-        private int places;
-
         public Plane()
-        : this("Untitled", 0, 0, 0)
+        : base()
         {
         }
 
         public Plane(string name, int places)
-        : this(name, 0, 0, places)
+        : base(name, places)
         {
         }
 
-        public Plane(string name, int passengers, int places)
-        : this(name, 0, passengers, places)
+        public Plane(string name, int places, int speed)
+        : base(name, places, speed)
         {
         }
 
-        public Plane(string name, int speed, int passengers, int places)
+        public Plane(string name, int places, int passengers, int speed)
+        : base(name, places, passengers, speed)
         {
-            Name = name;
-            this.speed = speed;
-            this.passengers = passengers;
-            this.places = places;
         }
 
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        public int Speed
-        {
-            get
-            {
-                return speed;
-            }
-
-            set
-            {
-                if (value < 0)
-                {
-                    speed = 0;
-                }
-                else
-                {
-                    speed = value;
-                }
-            }
-        }
-
-        public void DisplayInfo()
-        {
-            Console.WriteLine($"------------Получение информации о {Name}------------");
-            if (speed == 0 & Name == "Untitled")
-            {
-                Console.WriteLine($"Самолёт не зарегестрирован");
-            }
-            else if (speed == 0 & passengers == 0)
-            {
-                Console.WriteLine($"Самолёт {Name} стоит без пассажиров");
-            }
-            else if (speed == 0)
-            {
-                Console.WriteLine($"Самолёт {Name} стоит с {passengers} пассажирами");
-            }
-            else if (speed != 0 & passengers == 0)
-            {
-                Console.WriteLine($"Самолёт {Name} летит со скростью {speed} без пассажиров");
-            }
-            else if (speed < 0)
-            {
-                Console.WriteLine("Скорость задана неверно");
-            }
-            else
-            {
-                Console.WriteLine($"Самолёт {Name} летит со скростью {speed} c {passengers} пассажирами");
-            }
-
-            Console.WriteLine($"------------Информация получена------------\n");
-        }
-
-        public bool CheckPlaces()
+        public bool IsPlaces()
         {
             Console.WriteLine($"------------Проверка мест в {Name}------------");
-            if (places == passengers)
+            if (Places == Passengers)
             {
                 Console.WriteLine($"Все места заняты");
                 Console.WriteLine($"------------Проверка завершена------------\n");
                 return false;
             }
-            else if (places > passengers)
+            else if (Places > Passengers)
             {
                 Console.WriteLine($"В самолёте есть свободые места");
                 Console.WriteLine($"------------Проверка завершена------------\n");
@@ -111,11 +47,16 @@ namespace CourseApp
             }
         }
 
-        public int StopPlane()
+        public override int Stop()
         {
-            speed = 0;
-            Console.WriteLine($"Самолёт {Name} остановлен\n");
-            return speed;
+            Console.Write("Самолёт ");
+            base.Stop();
+            return Speed;
+        }
+
+        public override string MakeSound()
+        {
+            return "Я самолёт\n";
         }
     }
 }
