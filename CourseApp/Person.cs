@@ -43,18 +43,7 @@ namespace CourseApp
                     Melancholic,
                 }
 
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-            }
-        }
+        public string Name { get; set; }
 
         public int Age
         {
@@ -100,8 +89,8 @@ namespace CourseApp
             return $"Name: {Name}.  Age: {Age}. Temperament: {Temperament}.";
         }
 
-        public abstract void DoesSomething();
+        public abstract string DoesSomething();
 
-        public abstract void GoingSomewhere();
+        public abstract string GoingSomewhere();
     }
 }

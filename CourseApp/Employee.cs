@@ -7,20 +7,18 @@ namespace CourseApp
         private string company;
 
         public Employee()
+        : this("Unemployee")
         {
-            this.company = "Unemployee";
         }
 
         public Employee(string name)
-        : base(name)
+        : this(name, 1, "Not defined", "Unemployee")
         {
-            this.company = "Unemployee";
         }
 
         public Employee(string name, int age)
-        : base(name, age)
+        : this(name, age, "Not defined", "Unemployee")
         {
-            this.company = "Unemployee";
         }
 
         public Employee(string name, int age, string temperament, string company)
@@ -29,32 +27,21 @@ namespace CourseApp
             this.company = company;
         }
 
-        public string Company
-        {
-            get
-            {
-                return company;
-            }
-
-            set
-            {
-                company = value;
-            }
-        }
+        public string Company { get; set; }
 
         public override string ToString()
         {
             return $"Name: {Name}.  Age: {Age}. Temperament: {Temperament}. Company: {Company}";
         }
 
-        public override void DoesSomething()
+        public override string DoesSomething()
         {
-            Console.WriteLine("Works");
+            return "Works";
         }
 
-        public override void GoingSomewhere()
+        public override string GoingSomewhere()
         {
-            Console.WriteLine("Company");
+            return "Company";
         }
     }
 }

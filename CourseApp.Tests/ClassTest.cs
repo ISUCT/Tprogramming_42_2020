@@ -29,25 +29,5 @@ namespace CourseApp.Tests
              person.Temperament = a;
              Assert.Equal(person.Temperament, exp);
         }
-
-        [Theory]
-        [InlineData("ISUCT", "ISUCT")]
-        [InlineData("Cambridge", "Cambridge")]
-        public void TestUniversity(string a, string exp)
-        {
-             Student person = new Student();
-             person.University = a;
-             Assert.Equal(person.University, exp);
-        }
-
-        [Theory]
-        [InlineData("Microsoft", "Microsoft")]
-        [InlineData("Yandex", "Yandex")]
-        public void TestCompany(string a, string exp)
-        {
-             Employee person = new Employee();
-             person.Company = a;
-             Assert.Equal(person.Company, exp);
-        }
     }
 }

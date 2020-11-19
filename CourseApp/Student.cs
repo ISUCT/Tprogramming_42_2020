@@ -12,21 +12,13 @@ namespace CourseApp
         }
 
         public Student(string name)
-        : base(name)
+        : this(name, 1, "Not defined", "Not known")
         {
-            this.university = "Not known";
         }
 
         public Student(string name, int age)
-        : base(name, age)
+        : this(name, age, "Not defined", "Not known")
         {
-            this.university = "Not known";
-        }
-
-        public Student(string name, int age, string university)
-        : base(name, age)
-        {
-            this.university = university;
         }
 
         public Student(string name, int age, string temperament, string university)
@@ -35,32 +27,21 @@ namespace CourseApp
             this.university = university;
         }
 
-        public string University
-        {
-            get
-            {
-                return university;
-            }
-
-            set
-            {
-                university = value;
-            }
-        }
+        public string University { get; set; }
 
         public override string ToString()
         {
             return $"Name: {Name}.  Age: {Age}. Temperament: {Temperament}. University: {University}";
         }
 
-        public override void DoesSomething()
+        public override string DoesSomething()
         {
-            Console.WriteLine("Study");
+            return "Study";
         }
 
-        public override void GoingSomewhere()
+        public override string GoingSomewhere()
         {
-            Console.WriteLine("University");
+            return "University";
         }
     }
 }

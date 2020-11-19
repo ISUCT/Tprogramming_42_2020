@@ -70,23 +70,25 @@ namespace CourseApp
             Console.WriteLine("Hello World!");
             Console.WriteLine("Alexander Mokhnatkin");
             Console.WriteLine($"---------- Person ---------");
-            Student st = new Student("Max");
-            Employee emp = new Employee ("Alex");
+            Student st = new Student();
+            Employee emp = new Employee ();
+            st.Name = "Max";
             st.Age = 19;
             st.Temperament = "Phlegmatic";
             st.University = "ISUCT";
+            emp.Name = "Alex";
             emp.Age = 24;
             emp.Temperament = "Sanguine";
             emp.Company = "Microsoft";
             Console.WriteLine(st);
-            st.DoesSomething();
+            Console.WriteLine(st.DoesSomething());
             Console.WriteLine(emp);
-            emp.DoesSomething();
+            Console.WriteLine(emp.DoesSomething());
             Person[] pers = new Person[] { st, emp };
             foreach (var person in pers)
             {
-                person.DoesSomething();
-                person.GoingSomewhere();
+                Console.WriteLine(person.DoesSomething());
+                Console.WriteLine(person.GoingSomewhere());
             }
 
             Console.ReadLine();
