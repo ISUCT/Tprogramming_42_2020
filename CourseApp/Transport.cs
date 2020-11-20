@@ -5,7 +5,6 @@ namespace CourseApp
     public abstract class Transport
     {
        private double speed;
-       private double way;
        private double timeWay;
 
        public Transport()
@@ -67,22 +66,11 @@ namespace CourseApp
            }
        }
 
-       protected double Way
-       {
-           get
-           {
-               return way;
-           }
-
-           set
-           {
-               this.way = value;
-           }
-       }
+       protected double Way { get; set; }
 
        public void Go()
        {
-           this.Way = Math.Abs(this.Speed) * this.TimeWay;
+           this.Way = this.Speed * this.TimeWay;
        }
 
        public void Stop()
