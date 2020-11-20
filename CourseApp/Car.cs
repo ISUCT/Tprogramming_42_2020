@@ -19,13 +19,9 @@ namespace CourseApp
         {
         }
 
-        public override string ToString()
+        public override void MakeSignal()
         {
-            return $"Speed = {Speed}, Timeway = {TimeWay}, Way = {Way}";
-        }
-
-        public override void CheckAreThisArea()
-        {
+            Console.WriteLine("Bee-bee-bee");
         }
     }
 }

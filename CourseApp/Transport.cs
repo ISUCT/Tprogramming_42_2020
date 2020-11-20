@@ -9,16 +9,14 @@ namespace CourseApp
        private double timeWay;
 
        public Transport()
+        : this(0, 0)
        {
-           this.Speed = 0;
-           this.TimeWay = 0;
            this.Way = 0;
        }
 
        public Transport(double speed)
+        : this (speed, 0)
        {
-           this.Speed = speed;
-           this.TimeWay = 0;
            this.Way = 0;
        }
 
@@ -40,7 +38,7 @@ namespace CourseApp
            {
                if (value < 0)
                {
-                   this.speed = 0;
+                    throw new ArgumentOutOfRangeException("value", "Speed must positive or zero equals.");
                }
                else
                {
@@ -60,7 +58,7 @@ namespace CourseApp
            {
                if (value < 0)
                {
-                   this.timeWay = 0;
+                    throw new ArgumentOutOfRangeException("value", "Timeway must positive or zero equals.");
                }
                else
                {
@@ -98,8 +96,11 @@ namespace CourseApp
            return ans;
        }
 
-       public abstract override string ToString();
+       public override string ToString()
+       {
+           return $"Speed = {Speed}, Timeway = {TimeWay}, Way = {Way}";
+       }
 
-       public abstract void CheckAreThisArea();
+       public abstract void MakeSignal();
     }
 }

@@ -94,7 +94,7 @@ namespace CourseApp
         Transport[] elementsOfSuperClass = new Transport[] { car1, bicycle1, motocycle1 };
         foreach (var transport in elementsOfSuperClass)
         {
-            transport.CheckAreThisArea();
+            transport.MakeSignal();
         }
         }
     }

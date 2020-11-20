@@ -32,7 +32,7 @@ namespace CourseApp
             {
                 if (value < 0 || value > 50)
                 {
-                    this.speed = 0;
+                    throw new ArgumentOutOfRangeException("value", "Speed must positive or zero equals or less 50.");
                 }
                 else
                 {
@@ -41,13 +41,9 @@ namespace CourseApp
             }
         }
 
-        public override string ToString()
+        public override void MakeSignal()
         {
-            return $"Speed = {Speed}, Timeway = {TimeWay}, Way = {Way}";
-        }
-
-        public override void CheckAreThisArea()
-        {
+            Console.WriteLine("Tr-tr-tr");
         }
     }
 }
