@@ -6,69 +6,60 @@ namespace CourseApp
     {
         public static double Calc(double a, double b, double x)
         {
-            var numerator = Math.Log(Math.Pow(b, 2) - Math.Pow(x, 2)) / Math.Log(a);
-            var denominator = Math.Pow(Math.Abs(Math.Pow(x, 2) - Math.Pow(a, 2)), 1 / 3.0);
-            var y = numerator / denominator;
+            var t1 = a * Math.Pow(x, 1 / 3);
+            var t2 = b * Math.Log(x, 5);
+            var t3 = Math.Pow(Math.Log(x - 1), 3);
+            var y = (t1 - t2) / t3;
             return y;
         }
 
-        public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
+        public static (double x, double y)[] TaskA(double a, double b, double x, double x_step, double x_end)
         {
-            if (xk > xn)
+            var theArray = new(double x, double y)[(int)Math.Ceiling((x_end - x) / x_step) + 1];
+            int idx = 0;
+            for (double i = x; i <= x_end; i += x_step)
             {
-                var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
-                int i = 0;
-                for (var x = xn; x <= xk; x += dx)
-                {
-                    var y = Calc(a, b, x);
-                    res[i] = (x, y);
-                    i++;
-                }
-
-                return res;
+                var y = Calc(a, b, i);
+                theArray[idx] = (i, y);
+                idx++;
             }
 
-            return new(double, double)[0];
+            return theArray;
         }
 
-        public static (double x, double y)[] TaskB(double a, double b, double[] xItems)
+        public static (double x, double y)[] TaskB(double a, double b, double[] theArray)
         {
-            var res = new(double, double)[xItems.Length];
-            int i = 0;
-            foreach (var x in xItems)
+            var doubleArray = new(double x, double y)[theArray.Length];
+            for (int i = 0; i < theArray.Length; i += 1)
             {
-                var y = Calc(a, b, x);
-                res[i] = (x, y);
-                i++;
+                var y = Calc(a, b, theArray[i]);
+                doubleArray[i] = (theArray[i], y);
             }
 
-            return res;
+            return doubleArray;
         }
 
         public static void Main(string[] args)
         {
-            const double a = 2.0;
-            const double b = 4.1;
-            Console.WriteLine($"--------- TASK A --------------");
-            var taskA = TaskA(a, b, 0.77, 1.77, 0.2);
-            foreach (var item in taskA)
+            double a = 4.1;
+            double b = 2.7;
+            double[] theArray2 = { 1.9, 2.15, 2.34, 2.74, 3.16 };
+            var theArray1 = new(double x, double y)[11];
+            theArray1 = TaskA(a, b, 1.5, 0.2, 3.5);
+            Console.WriteLine("TaskA");
+            foreach (var i in theArray1)
             {
-                var (x, y) = item;
-                Console.WriteLine($"x={x}, y={y}");
+                var (x, y) = i;
+                Console.WriteLine($"x = {x}, y = {y};");
             }
 
-            Console.WriteLine($"--------- TASK B --------------");
-            double[] xItems = { 1.24, 1.38, 2.38, 3.21, 0.68 };
-            var taskB = TaskB(a, b, xItems);
-            foreach (var item in taskB)
+            Console.WriteLine("TaskB");
+            var theArray = TaskB(a, b, theArray2);
+            foreach (var i in theArray)
             {
-                var (x, y) = item;
-                Console.WriteLine($"x={x}, y={y}");
+                var (x, y) = i;
+                Console.WriteLine($"x = {x}, y = {y};");
             }
-
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Yulia Strunnikova!");
-            Console.ReadLine();
         }
     }
 }
