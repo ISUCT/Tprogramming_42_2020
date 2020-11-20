@@ -3,12 +3,11 @@ using Xunit;
 
 namespace CourseApp.Tests
 {
-    public class TestOfClass
+    public class TestOfClassCar
     {
         [Theory]
         [InlineData(0, 0)]
         [InlineData(12.8, 12.8)]
-        [InlineData(-325.1, 0)]
         [InlineData(122.6 / 9.5, 122.6 / 9.5)]
         [InlineData(65.9, 65.9)]
         public void TestValuesofPropertiesSpeed(double speed, double exp)
@@ -25,9 +24,7 @@ namespace CourseApp.Tests
         [Theory]
         [InlineData(0, 0, 0)]
         [InlineData(12.8, 100.3, 100.3)]
-        [InlineData(-325.1, 3.5, 3.5)]
         [InlineData(122.6 / 9.5, 23.3, 23.3)]
-        [InlineData(65.9, -23, 0)]
         public void TestValuesofPropertiesTime(double speed, double time, double expTime)
         {
             Car car1 = new Car(speed, time);
@@ -52,7 +49,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestPositiveWtihZeroGetInfo_01()
+        public void TestPositiveWtihZeroGetInfo01()
         {
             Car car1 = new Car(234.7, 0);
             car1.Go();
@@ -66,7 +63,7 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestPositiveWtihZeroGetInfo_02()
+        public void TestPositiveWtihZeroGetInfo02()
         {
             Car car2 = new Car(0, 567.9);
             car2.Go();
@@ -94,17 +91,10 @@ namespace CourseApp.Tests
         }
 
         [Fact]
-        public void TestNegativeValues()
+        public void TestNoExceptionIsThrownWhenNegativeValues()
         {
-            Car car1 = new Car(-546.2, -82.9);
-            car1.Go();
-            Tuple<double, double> resultBeforeFIrst = car1.GetInfo();
-            car1.Stop();
-            Tuple<double, double> resultAfterFIrst = car1.GetInfo();
-            Assert.Equal(0, resultBeforeFIrst.Item1);
-            Assert.Equal(0, resultBeforeFIrst.Item2);
-            Assert.Equal(0, resultAfterFIrst.Item1);
-            Assert.Equal(0, resultAfterFIrst.Item2);
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() => new Car(-325.1, 3.5));
+            Assert.Equal("Speed must positive or zero equals. (Parameter 'value')", ex.Message);
         }
     }
 }
