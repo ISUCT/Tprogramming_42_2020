@@ -9,9 +9,9 @@ namespace CourseApp.Tests
         [InlineData(0, 1)]
         [InlineData(-500, 1)]
         [InlineData(12, 12)]
-        public void TestAge(int a, int exp)
+        public void TestStudentAge(int a, int exp)
         {
-             Person person = new Person();
+             Student person = new Student();
              person.Age = a;
              Assert.Equal(person.Age, exp);
         }
@@ -25,7 +25,7 @@ namespace CourseApp.Tests
         [InlineData("Boomer", "Not defined")]
         public void TestTemperament(string a, string exp)
         {
-             Person person = new Person();
+             Student person = new Student();
              person.Temperament = a;
              Assert.Equal(person.Temperament, exp);
         }

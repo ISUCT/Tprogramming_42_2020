@@ -2,7 +2,7 @@ using System;
 
 namespace CourseApp
 {
-    public class Person
+    public abstract class Person
     {
         private string name;
         private int age;
@@ -43,6 +43,8 @@ namespace CourseApp
                     Melancholic,
                 }
 
+        public string Name { get; set; }
+
         public int Age
         {
             get
@@ -82,19 +84,13 @@ namespace CourseApp
             }
         }
 
-        public void DisplayAllInfo()
+        public override string ToString()
         {
-            Console.WriteLine($"Name: {name}. Age: {age}. Temperament: {temperament}.");
+            return $"Name: {Name}.  Age: {Age}. Temperament: {Temperament}.";
         }
 
-        public void DisplayNameAgeInfo()
-        {
-            Console.WriteLine($"Name: {name}.  Age: {age}.");
-        }
+        public abstract string DoesSomething();
 
-        public void DisplayNameTemperamentInfo()
-        {
-            Console.WriteLine($"Name: {name}. Temperament: {temperament}.");
-        }
+        public abstract string GoingSomewhere();
     }
 }
