@@ -96,35 +96,35 @@ namespace CourseApp
         public void SetRandomClass()
         {
             Random rand = new Random();
-            int randomNumber = rand.Next(1, 3);
-            switch (randomNumber)
+            HeroClasses randHeroClass = (HeroClasses)rand.Next(3);
+            switch (randHeroClass)
             {
-                case 1:
-                    heroClass = "Warrior";
+                case HeroClasses.Warrior:
+                    heroClass = randHeroClass.ToString();
                     break;
-                case 2:
-                    heroClass = "Archer";
+                case HeroClasses.Archer:
+                    heroClass = randHeroClass.ToString();
                     break;
-                case 3:
-                    heroClass = "Mage";
+                case HeroClasses.Mage:
+                    heroClass = randHeroClass.ToString();
                     break;
-                }
+            }
         }
 
         public void SetRandomAttribute()
         {
             Random rand = new Random();
-            int randomNumber = rand.Next(1, 3);
-            switch (randomNumber)
+            HeroAttribute randHeroAttribute = (HeroAttribute)rand.Next(1, 3);
+            switch (randHeroAttribute)
             {
-                case 1:
-                    attribute = "Strength";
+                case HeroAttribute.Strength:
+                    attribute = randHeroAttribute.ToString();
                     break;
-                case 2:
-                    attribute = "Agility";
+                case HeroAttribute.Agility:
+                    attribute = randHeroAttribute.ToString();
                     break;
-                case 3:
-                    attribute = "Intellect";
+                case HeroAttribute.Intellect:
+                    attribute = randHeroAttribute.ToString();
                     break;
             }
         }
