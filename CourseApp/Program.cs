@@ -73,7 +73,11 @@ namespace CourseApp
                 day = DateTime.Now.Day - age.Day;
             }
 
-            if ((month == 0) & (day == 0))
+            if (age.Year > DateTime.Now.Year)
+            {
+                return $"{person}: Еще не родился";
+            }
+            else if ((month == 0) & (day == 0))
             {
                 return $"{person}: {year} лет, С днём рождения!";
             }
@@ -117,7 +121,7 @@ namespace CourseApp
             st.University = "ISUCT";
             emp.Name = "Alex";
             emp.Age = 23;
-            DateTime alex = new DateTime(2004, 04, 23);
+            DateTime alex = new DateTime(2077, 01, 01);
             Console.WriteLine(CalcAge(alex, emp.Name));
             emp.Temperament = "Sanguine";
             emp.Company = "Microsoft";

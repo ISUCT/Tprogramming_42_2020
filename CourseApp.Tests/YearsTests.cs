@@ -38,5 +38,16 @@ namespace CourseApp.Testsd
              var ageP = Program.CalcAge(pers, person.Name);
              Assert.Equal(ageP, exp);
         }
+
+        [Fact]
+        public void TestNotVornTheDate ()
+        {
+            string exp = "Max: Еще не родился";
+            Student person = new Student();
+             person.Name = "Max";
+             DateTime pers = new DateTime(2077, 01, 01);
+             var ageP = Program.CalcAge(pers, person.Name);
+             Assert.Equal(ageP, exp);
+        }
     }
 }
