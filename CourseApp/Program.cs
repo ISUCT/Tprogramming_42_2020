@@ -45,6 +45,43 @@ namespace CourseApp
             return res;
         }
 
+        public static string CalcAge(DateTime birthdate, string person)
+        {
+            var year = DateTime.Now.Year - birthdate.Year;
+            var month = 0;
+            var day = 0;
+            if (DateTime.Now.Month < birthdate.Month)
+            {
+                year--;
+                var monthCount = DateTime.Now.Month - birthdate.Month;
+                month = 12 + monthCount;
+            }
+            else
+            {
+                month = DateTime.Now.Month - birthdate.Month;
+            }
+
+            if (DateTime.Now.Day < birthdate.Day)
+            {
+                month--;
+                var daysCount = DateTime.Now.Day - birthdate.Day;
+                day = 12 + daysCount;
+            }
+            else
+            {
+                day = DateTime.Now.Day - birthdate.Day;
+            }
+
+            if (DateTime.Now < birthdate)
+            {
+                return $"Возраст {person}: введён не верно";
+            }
+            else
+            {
+                return $"Возраст {person}: {year} лет, {month} месяцев, {day} дней";
+            }
+        }
+
         public static void Main(string[] args)
         {
             const double a = 1.1;
@@ -92,6 +129,11 @@ namespace CourseApp
             }
 
             ((Car)car1).Beep();
+            Console.WriteLine("----Find Age-----\n");
+            Person egor = new Person();
+            egor.Name = "egor";
+            DateTime egorbirth = new DateTime(2001, 12, 25);
+            Console.WriteLine(Program.CalcAge(egorbirth, egor.Name));
             Console.ReadLine();
         }
     }
