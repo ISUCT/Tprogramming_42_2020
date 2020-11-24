@@ -65,7 +65,7 @@ namespace CourseApp
             {
                 month--;
                 var daysCount = DateTime.Now.Day - birthdate.Day;
-                day = 12 + daysCount;
+                day = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + daysCount + 1;
             }
             else
             {
