@@ -25,14 +25,14 @@ namespace CourseApp
             Name = Console.ReadLine();
         }
 
-        public override void DisplayInfo()
+        public override string ToString()
         {
-            Console.WriteLine($"Имя: {Name}, Уровень: {Lvl}");
+            return $"Имя: {Name}, Уровень: {Lvl}";
         }
 
-        public override void SaySomething()
+        public override string SaySomething()
         {
-            Console.WriteLine ($"{Name}: Неважно как быстро летит дракон, важно как быстро бежишь ты");
+            return $"{Name}: Неважно как быстро летит дракон, важно как быстро бежишь ты.";
         }
     }
 }

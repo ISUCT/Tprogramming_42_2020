@@ -94,9 +94,9 @@ namespace CourseApp
             }
         }
 
-        public virtual void DisplayInfo()
+        public override string ToString()
         {
-            Console.WriteLine ($"Имя: {named}, Атрибут: {attribute}, Класс: {heroClass}, Уровень: {lvl}");
+            return $"Имя: {Name}, Атрибут: {attribute}, Класс: {heroClass}, Уровень: {lvl}.";
         }
 
         public void SetRandomClass()
@@ -141,15 +141,8 @@ namespace CourseApp
             Lvl = rand.Next(1, 100);
         }
 
-        public virtual void ChooseName()
-        {
-            Console.WriteLine("Введите имя персонажа: ");
-            named = Console.ReadLine();
-        }
+        public abstract void ChooseName();
 
-        public virtual void SaySomething()
-        {
-            Console.WriteLine ($"Привет, я {named}");
-        }
+        public abstract string SaySomething();
     }
 }

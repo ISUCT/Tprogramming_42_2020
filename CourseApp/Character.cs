@@ -17,5 +17,16 @@ namespace CourseApp
         public Character (string name, string attribute, string heroClass, int lvl)
         {
         }
+
+        public override void ChooseName()
+        {
+            Console.WriteLine("Введите имя персонажа: ");
+            Name = Console.ReadLine();
+        }
+
+        public override string SaySomething()
+        {
+            return $"Привет, я {Name}.";
+        }
     }
 }
