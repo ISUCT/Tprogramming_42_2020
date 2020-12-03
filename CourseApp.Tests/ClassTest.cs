@@ -11,7 +11,7 @@ namespace CourseApp.Tests
         [InlineData(10, 10)]
         public void TestLvl(int a, int exp)
         {
-            Hero hero = new Hero();
+            Character hero = new Character();
             hero.Lvl = a;
             Assert.Equal(hero.Lvl, exp);
         }
@@ -23,7 +23,7 @@ namespace CourseApp.Tests
         [InlineData("Intelect", null)]
         public void TestAttribute(string a, string exp)
         {
-            Hero hero = new Hero();
+            Character hero = new Character();
             hero.AttributeHero = a;
             Assert.Equal(hero.AttributeHero, exp);
         }
@@ -35,7 +35,7 @@ namespace CourseApp.Tests
         [InlineData("Mae", null)]
         public void TestClass(string a, string exp)
         {
-            Hero hero = new Hero();
+            Character hero = new Character();
             hero.ClassHero = a;
             Assert.Equal(hero.ClassHero, exp);
         }
