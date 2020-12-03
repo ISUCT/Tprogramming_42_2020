@@ -65,18 +65,31 @@ namespace CourseApp
             Console.WriteLine("Hello World!");
             Console.WriteLine("Nikita Pavlov");
 
-            Hero newHero = new Hero ("Dragonborn");
+            Character newHero = new Character ("Dragonborn");
             newHero.SetRandomClass();
             newHero.SetRandomAttribute();
             newHero.AssignLvl();
             newHero.DisplayInfo();
 
-            Hero hero2 = new Hero ();
+            Character hero2 = new Character ();
             hero2.ChooseName();
             hero2.Lvl = 0;
             hero2.ClassHero = "Warrior";
             hero2.AttributeHero = "Strength";
+            hero2.SaySomething();
             hero2.DisplayInfo();
+
+            Guard guard1 = new Guard ();
+            guard1.ChooseName();
+            guard1.Lvl = 100;
+            guard1.DisplayInfo();
+            guard1.SaySomething();
+
+            Bandit bandit1 = new Bandit ();
+            bandit1.ChooseName();
+            bandit1.AssignLvl();
+            bandit1.DisplayInfo();
+            bandit1.SaySomething();
 
             Console.ReadLine();
         }

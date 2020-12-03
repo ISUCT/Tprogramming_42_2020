@@ -2,11 +2,11 @@ using System;
 
 namespace CourseApp
 {
-    public class Hero
+    public abstract class Hero
     {
-        private string name;
         private string heroClass;
         private string attribute;
+        private string named;
         private int lvl;
 
         public Hero ()
@@ -17,15 +17,41 @@ namespace CourseApp
         public Hero (string name)
         : this(name, " ", " ", 0)
         {
-            this.name = name;
+            this.named = name;
         }
 
         public Hero (string name, string attribute, string heroClass, int lvl)
         {
-            this.name = name;
+            this.named = name;
             this.attribute = attribute;
             this.heroClass = heroClass;
             this.lvl = lvl;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public virtual int Lvl
+        {
+            get
+            {
+                return lvl;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    lvl = 0;
+                }
+                else
+                {
+                    lvl = value;
+                }
+            }
         }
 
         public string ClassHero
@@ -68,29 +94,9 @@ namespace CourseApp
             }
         }
 
-        public int Lvl
+        public virtual void DisplayInfo()
         {
-            get
-            {
-                return lvl;
-            }
-
-            set
-            {
-                if (value < 0)
-                {
-                    lvl = 0;
-                }
-                else
-                {
-                    lvl = value;
-                }
-            }
-        }
-
-        public void DisplayInfo()
-        {
-            Console.WriteLine ($"Имя: {name}, Атрибут: {attribute}, Класс: {heroClass}, Уровень: {lvl}");
+            Console.WriteLine ($"Имя: {named}, Атрибут: {attribute}, Класс: {heroClass}, Уровень: {lvl}");
         }
 
         public void SetRandomClass()
@@ -129,16 +135,21 @@ namespace CourseApp
             }
         }
 
-        public void AssignLvl()
+        public virtual void AssignLvl()
         {
             Random rand = new Random();
-            lvl = rand.Next(1, 100);
+            Lvl = rand.Next(1, 100);
         }
 
-        public void ChooseName()
+        public virtual void ChooseName()
         {
             Console.WriteLine("Введите имя персонажа: ");
-            name = Console.ReadLine();
+            named = Console.ReadLine();
+        }
+
+        public virtual void SaySomething()
+        {
+            Console.WriteLine ($"Привет, я {named}");
         }
     }
 }
