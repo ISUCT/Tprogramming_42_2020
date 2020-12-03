@@ -45,40 +45,19 @@ namespace CourseApp
             return res;
         }
 
-        public static string CalcAge(DateTime birthdate, string person)
+        public static string CalcAge(DateTime birthdate, DateTime todaydate, string person)
         {
-            var year = DateTime.Now.Year - birthdate.Year;
-            var month = 0;
-            var day = 0;
-            if (DateTime.Now.Month < birthdate.Month)
+            var todayticks = todaydate.Ticks;
+            var birthticks = birthdate.Ticks;
+            if (birthticks <= todayticks)
             {
-                year--;
-                var monthCount = DateTime.Now.Month - birthdate.Month;
-                month = 12 + monthCount;
+                var diff = todayticks - birthticks;
+                DateTime diffD = new DateTime(diff);
+                return $"Возраст {person}: {diffD.Year - 1} лет, {diffD.Month - 1} месяцев, {diffD.Day - 1} дней";
             }
             else
-            {
-                month = DateTime.Now.Month - birthdate.Month;
-            }
-
-            if (DateTime.Now.Day < birthdate.Day)
-            {
-                month--;
-                var daysCount = DateTime.Now.Day - birthdate.Day;
-                day = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + daysCount + 1;
-            }
-            else
-            {
-                day = DateTime.Now.Day - birthdate.Day;
-            }
-
-            if (DateTime.Now < birthdate)
             {
                 return $"Возраст {person}: введён не верно";
-            }
-            else
-            {
-                return $"Возраст {person}: {year} лет, {month} месяцев, {day} дней";
             }
         }
 
@@ -132,8 +111,10 @@ namespace CourseApp
             Console.WriteLine("----Find Age-----\n");
             Person egor = new Person();
             egor.Name = "egor";
-            DateTime egorbirth = new DateTime(2001, 12, 25);
-            Console.WriteLine(Program.CalcAge(egorbirth, egor.Name));
+            DateTime egorbirth = new DateTime(2020, 12, 03);
+            DateTime today = DateTime.Now;
+            var egorage = Program.CalcAge(egorbirth, today, egor.Name);
+            Console.WriteLine(egorage);
             Console.ReadLine();
         }
     }
