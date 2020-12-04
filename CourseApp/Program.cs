@@ -12,6 +12,8 @@ namespace CourseApp
 
         public static (double x, double y)[] TaskA(double xn, double xk, double dx)
         {
+            if (xk > xn)
+            {
             var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
             int i = 0;
             for (var x = xn; x <= xk; x += dx)
@@ -22,6 +24,9 @@ namespace CourseApp
             }
 
             return res;
+        }
+
+            return new(double, double)[0];
         }
 
         public static (double x, double y)[] TaskB(double[] xItems)
@@ -59,6 +64,33 @@ namespace CourseApp
 
             Console.WriteLine("Hello World!");
             Console.WriteLine("Nikita Pavlov");
+
+            Character newHero = new Character ("Dragonborn");
+            newHero.SetRandomClass();
+            newHero.SetRandomAttribute();
+            newHero.AssignLvl();
+            Console.WriteLine(newHero);
+
+            Character hero2 = new Character ();
+            hero2.ChooseName();
+            hero2.Lvl = 0;
+            hero2.ClassHero = "Warrior";
+            hero2.AttributeHero = "Strength";
+            Console.WriteLine(hero2.SaySomething());
+            Console.WriteLine(hero2);
+
+            Guard guard1 = new Guard ();
+            guard1.ChooseName();
+            guard1.Lvl = 100;
+            Console.WriteLine(guard1);
+            Console.WriteLine(guard1.SaySomething());
+
+            Bandit bandit1 = new Bandit ();
+            bandit1.ChooseName();
+            bandit1.AssignLvl();
+            Console.WriteLine(bandit1);
+            Console.WriteLine(bandit1.SaySomething());
+
             Console.ReadLine();
         }
     }
