@@ -45,6 +45,22 @@ namespace CourseApp
             return res;
         }
 
+        public static string CalcAge(DateTime birthdate, DateTime todaydate, string person)
+        {
+            var todayticks = todaydate.Ticks;
+            var birthticks = birthdate.Ticks;
+            if (birthticks <= todayticks)
+            {
+                var diff = todayticks - birthticks;
+                DateTime diffD = new DateTime(diff);
+                return $"Возраст {person}: {diffD.Year - 1} лет, {diffD.Month - 1} месяцев, {diffD.Day - 1} дней";
+            }
+            else
+            {
+                return $"Возраст {person}: введён не верно";
+            }
+        }
+
         public static void Main(string[] args)
         {
             const double a = 1.1;
@@ -92,6 +108,13 @@ namespace CourseApp
             }
 
             ((Car)car1).Beep();
+            Console.WriteLine("----Find Age-----\n");
+            Person egor = new Person();
+            egor.Name = "egor";
+            DateTime egorbirth = new DateTime(2020, 12, 03);
+            DateTime today = DateTime.Now;
+            var egorage = Program.CalcAge(egorbirth, today, egor.Name);
+            Console.WriteLine(egorage);
             Console.ReadLine();
         }
     }
