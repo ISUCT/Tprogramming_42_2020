@@ -6,49 +6,36 @@ namespace CourseApp.Tests
     public class TestOfData
     {
         [Fact]
-        public void TestTheSameDate()
+        public void TestPastDate()
         {
             Transport machine = new Car();
-            DateTime now = DateTime.Now;
-            int year = now.Year;
-            int month = now.Month;
-            int day = now.Day;
-            int yearResult = machine.Age(year, month, day).Year - 1;
-            int monthResult = machine.Age(year, month, day).Month - 1;
-            int dayResult = machine.Age(year, month, day).Day - 1;
-            Assert.Equal(0, yearResult);
-            Assert.Equal(0, monthResult);
-            Assert.Equal(0, dayResult);
+            DateTime now = new DateTime(2020, 12, 8);
+            DateTime birth = new DateTime(2001, 12, 6);
+            string exp = "19 years 0 months 5 days";
+            string result = machine.Age(now, birth);
+            Assert.Equal(exp, result);
         }
 
         [Fact]
         public void TestOfPastDate()
         {
             Transport machine = new Car();
-            int year = 2001;
-            int month = 12;
-            int day = 6;
-            int yearResult = machine.Age(year, month, day).Year - 1;
-            int monthResult = machine.Age(year, month, day).Month - 1;
-            int dayResult = machine.Age(year, month, day).Day - 1;
-            Assert.Equal(18, yearResult);
-            Assert.Equal(11, monthResult);
-            Assert.Equal(18, dayResult);
+            DateTime now = new DateTime(2020, 12, 8);
+            DateTime birth = new DateTime(2020, 12, 8);
+            string exp = "0 years 0 months 0 days";
+            string result = machine.Age(now, birth);
+            Assert.Equal(exp, result);
         }
 
         [Fact]
         public void TestOfFutureDate()
         {
             Transport machine = new Car();
-            int year = 2021;
-            int month = 11;
-            int day = 24;
-            int yearResult = machine.Age(year, month, day).Year - 1;
-            int monthResult = machine.Age(year, month, day).Month - 1;
-            int dayResult = machine.Age(year, month, day).Day - 1;
-            Assert.Equal(1, yearResult);
-            Assert.Equal(0, monthResult);
-            Assert.Equal(0, dayResult);
+            DateTime now = new DateTime(2020, 12, 8);
+            DateTime birth = new DateTime(2021, 11, 24);
+            string exp = "0 years 10 months 31 days";
+            string result = machine.Age(now, birth);
+            Assert.Equal(exp, result);
         }
     }
 }

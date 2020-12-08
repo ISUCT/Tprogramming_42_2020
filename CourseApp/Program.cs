@@ -102,7 +102,9 @@ namespace CourseApp
         int year = 2001;
         int month = 12;
         int day = 6;
-        Console.WriteLine($"{machine.Age(year, month, day).Year - 1} years {machine.Age(year, month, day).Month - 1} months {machine.Age(year, month, day).Day - 1} days");
+        DateTime birth = new DateTime(year, month, day);
+        DateTime now = new DateTime(2020, 12, 8);
+        Console.WriteLine(machine.Age(now, birth));
         }
     }
 }

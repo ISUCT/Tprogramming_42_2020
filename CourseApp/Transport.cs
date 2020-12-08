@@ -91,25 +91,49 @@ namespace CourseApp
 
        public abstract void MakeSignal();
 
-       public DateTime Age(int year, int mounth, int day)
+       public string Age(DateTime timeNow, DateTime dateProduced)
        {
-           DateTime timeNow = DateTime.Now;
-           DateTime dateProduced = new DateTime(year, mounth, day);
-           if (year > timeNow.Year)
-           {
-                dateProduced = dateProduced.AddYears(-timeNow.Year + 1);
-                dateProduced = dateProduced.AddMonths(-timeNow.Month + 1);
-                dateProduced = dateProduced.AddDays(-timeNow.Day + 1);
-                return dateProduced;
-           }
+           TimeSpan ans;
+           if (timeNow > dateProduced)
+            {
+                ans = timeNow.Subtract(dateProduced);
+            }
            else
-           {
-                timeNow = timeNow.AddYears(-dateProduced.Year + 1);
-                timeNow = timeNow.AddMonths(-dateProduced.Month + 1);
-                timeNow = timeNow.AddDays(-dateProduced.Day + 1);
-           }
+            {
+                ans = dateProduced.Subtract(timeNow);
+            }
 
-           return timeNow;
+           DateTime age = DateTime.MinValue;
+           age = age + ans;
+           int days = age.Day - 1;
+           int months = age.Month - 1;
+           int years = age.Year - 1;
+           if (timeNow.Day >= dateProduced.Day)
+            {
+                days += timeNow.Day - dateProduced.Day;
+            }
+            else
+            {
+                months--;
+                if (months < 0)
+                {
+                    years--;
+                    months += 12;
+                }
+
+                days += DateTime.DaysInMonth(timeNow.AddMonths(-1).Year, timeNow.AddMonths(-1).Month) + timeNow.Day - dateProduced.Day;
+            }
+
+            if (DateTime.IsLeapYear(dateProduced.Year) && dateProduced.Month == 2 && dateProduced.Day == 29)
+            {
+                if (timeNow >= new DateTime(timeNow.Year, 3, 1))
+                {
+                    days++;
+                }
+            }
+
+           string date = $"{years} years {months} months {days} days";
+           return date;
        }
     }
 }
