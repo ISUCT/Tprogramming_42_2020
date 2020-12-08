@@ -46,44 +46,20 @@ namespace CourseApp
             return res;
         }
 
-        public static string CalcAge(DateTime age, string person)
+        public static string CalcAge(DateTime today, DateTime age, string person)
         {
-            var year = DateTime.Now.Year - age.Year;
-            var month = 0;
-            var day = 0;
-            if (DateTime.Now.Month < age.Month)
+            if (age.Year <= today.Year)
             {
-                year = year - 1;
-                var monthCount = DateTime.Now.Month - age.Month;
-                month = 12 + monthCount;
+            var diff = today.Ticks - age.Ticks;
+            DateTime diffD = new DateTime(diff);
+            var year = diffD.Year - 1;
+            var month = diffD.Month - 1;
+            var day = diffD.Day - 1;
+            return $"{person}: {year} лет, {month} месяцев, {day} дней.";
             }
             else
             {
-                month = DateTime.Now.Month - age.Month;
-            }
-
-            if (DateTime.Now.Day < age.Day)
-            {
-                month = month - 1;
-                var dayCount = DateTime.Now.Day - age.Day;
-                day = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + dayCount + 1;
-            }
-            else
-            {
-                day = DateTime.Now.Day - age.Day;
-            }
-
-            if (age.Year > DateTime.Now.Year)
-            {
-                return $"{person}: Еще не родился";
-            }
-            else if ((month == 0) & (day == 0))
-            {
-                return $"{person}: {year} лет, С днём рождения!";
-            }
-            else
-            {
-                return $"{person}: {year} лет, {month} месяцев и {day} дней.";
+               throw new ArgumentOutOfRangeException("age", "Year of birth must be less than the current date");
             }
         }
 
@@ -111,18 +87,19 @@ namespace CourseApp
             Console.WriteLine("Hello World!");
             Console.WriteLine("Alexander Mokhnatkin");
             Console.WriteLine($"---------- Person ---------");
+            DateTime today = DateTime.Today;
             Student st = new Student();
             Employee emp = new Employee();
             st.Name = "Max";
             st.Age = 18;
-            DateTime max = new DateTime(2001, 12, 06);
-            Console.WriteLine(CalcAge(max, st.Name));
+            DateTime max = new DateTime(2000, 12, 08);
+            Console.WriteLine(CalcAge(today, max, st.Name));
             st.Temperament = "Phlegmatic";
             st.University = "ISUCT";
             emp.Name = "Alex";
             emp.Age = 23;
-            DateTime alex = new DateTime(2077, 01, 01);
-            Console.WriteLine(CalcAge(alex, emp.Name));
+            DateTime alex = new DateTime(2001, 12, 03);
+            Console.WriteLine(CalcAge(today, alex, emp.Name));
             emp.Temperament = "Sanguine";
             emp.Company = "Microsoft";
             Console.WriteLine(st);
