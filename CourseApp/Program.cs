@@ -96,6 +96,15 @@ namespace CourseApp
         {
             transport.MakeSignal();
         }
+
+        Console.WriteLine("-------------------------------------------\n");
+        Transport machine = new Car();
+        int year = 2001;
+        int month = 12;
+        int day = 6;
+        DateTime birth = new DateTime(year, month, day);
+        DateTime now = new DateTime(2020, 12, 8);
+        Console.WriteLine(machine.Age(now, birth));
         }
     }
 }

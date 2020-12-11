@@ -90,5 +90,50 @@ namespace CourseApp
        }
 
        public abstract void MakeSignal();
+
+       public string Age(DateTime timeNow, DateTime dateProduced)
+       {
+           TimeSpan ans;
+           if (timeNow > dateProduced)
+            {
+                ans = timeNow.Subtract(dateProduced);
+            }
+           else
+            {
+                ans = dateProduced.Subtract(timeNow);
+            }
+
+           DateTime age = DateTime.MinValue;
+           age = age + ans;
+           int days = age.Day - 1;
+           int months = age.Month - 1;
+           int years = age.Year - 1;
+           if (timeNow.Day >= dateProduced.Day)
+            {
+                days += timeNow.Day - dateProduced.Day;
+            }
+            else
+            {
+                months--;
+                if (months < 0)
+                {
+                    years--;
+                    months += 12;
+                }
+
+                days += DateTime.DaysInMonth(timeNow.AddMonths(-1).Year, timeNow.AddMonths(-1).Month) + timeNow.Day - dateProduced.Day;
+            }
+
+            if (DateTime.IsLeapYear(dateProduced.Year) && dateProduced.Month == 2 && dateProduced.Day == 29)
+            {
+                if (timeNow >= new DateTime(timeNow.Year, 3, 1))
+                {
+                    days++;
+                }
+            }
+
+           string date = $"{years} years {months} months {days} days";
+           return date;
+       }
     }
 }
