@@ -47,5 +47,20 @@ namespace CourseApp.Tests
                 Assert.Equal(expY[i], y, 1);
             }
         }
+
+        [Fact]
+        public void TestTaskBSize()
+        {
+            double[] zItems = { 0.15, 0.26, 0.37, 0.48, 0.56 };
+            var res = Program.TaskB(0.05, 0.06, zItems);
+            Assert.Equal(5, res.Length);
+        }
+
+        [Fact]
+        public void TestTaskAXnGraterXk()
+        {
+            var res = Program.TaskA(0.05, 0.06, 3, 1, 1);
+            Assert.Empty(res);
+        }
     }
 }
