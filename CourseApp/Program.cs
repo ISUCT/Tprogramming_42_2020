@@ -4,7 +4,7 @@ namespace CourseApp
 {
     public class Program
     {
-                public static double Calc(double a, double b, double x)
+        public static double Calc(double a, double b, double x)
         {
             var chislitel = Math.Acos(Math.Pow(x, 2) - Math.Pow(b, 2));
             var znamenatel = Math.Asin(Math.Pow(x, 2) - Math.Pow(a, 2));
