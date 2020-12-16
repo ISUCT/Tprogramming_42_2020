@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace CourseApp
 {
-    public class Program
+    public class Programa
     {
         public static double Calc(double a, double b, double x)
         {
@@ -40,7 +40,7 @@ namespace CourseApp
             return res;
         }
 
-        public static void Main(string[] args)
+        public void Main(string[] args)
         {
             const double a = 0.8;
             const double b = 0.4;
