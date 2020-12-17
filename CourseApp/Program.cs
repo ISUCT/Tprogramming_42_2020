@@ -43,6 +43,22 @@ namespace CourseApp
             return res;
         }
 
+        public static string CalculateAge(DateTime birthdate, DateTime todaydate)
+        {
+            var today = todaydate.Ticks;
+            var birth = birthdate.Ticks;
+            if (birth <= today)
+            {
+                var diff = today - birth;
+                DateTime diffD = new DateTime(diff);
+                return $"Возраст: {diffD.Year - 1} лет, {diffD.Month - 1} месяцев, {diffD.Day - 1} дней";
+            }
+            else
+            {
+                return $"Возраст указан не верно";
+            }
+        }
+
         public static void Main(string[] args)
         {
             Console.WriteLine($"--------- TASK A --------------");
@@ -90,6 +106,11 @@ namespace CourseApp
             bandit1.AssignLvl();
             Console.WriteLine(bandit1);
             Console.WriteLine(bandit1.SaySomething());
+
+            DateTime birth = new DateTime(1995, 12, 15);
+            DateTime today = DateTime.Now;
+            var age = Program.CalculateAge(birth, today);
+            Console.WriteLine(age);
 
             Console.ReadLine();
         }
