@@ -3,10 +3,10 @@ using Xunit;
 
 namespace CourseApp.Tests
 {
-    public class AnimalTest
+    public class MammalsTest
     {
         [Theory]
-        [InlineData("Animal", "Animal")]
+        [InlineData("Mammals", "Mammals")]
         [InlineData("Pig", "Pig")]
         public void TestName(string a, string exp)
         {

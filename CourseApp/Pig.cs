@@ -2,7 +2,7 @@ using System;
 
 namespace CourseApp
 {
-    public class Pig : Animal
+    public class Pig : Mammals
     {
         public Pig()
         : base()

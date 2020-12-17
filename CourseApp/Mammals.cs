@@ -2,29 +2,28 @@ using System;
 
 namespace CourseApp
 {
-        public abstract class Animal
+        public abstract class Mammals
         {
             private int fat;
             private int weight;
-            private string name;
             private int age;
 
-            public Animal()
+            public Mammals()
             : this("Неизвестно", 0, 0, 0)
             {
             }
 
-            public Animal(string name, int weight)
+            public Mammals(string name, int weight)
             : this(name, weight, 0, 0)
             {
             }
 
-            public Animal(string name, int weight, int fat)
+            public Mammals(string name, int weight, int fat)
             : this(name, weight, 0, fat)
             {
             }
 
-            public Animal(string name, int weight, int age, int fat)
+            public Mammals(string name, int weight, int age, int fat)
             {
                 Name = name;
                 Fat = fat;
@@ -34,15 +33,8 @@ namespace CourseApp
 
             public string Name
             {
-                get
-                {
-                    return name;
-                }
-
-                set
-                {
-                    name = value;
-                }
+                get;
+                set;
             }
 
             public int Weight
