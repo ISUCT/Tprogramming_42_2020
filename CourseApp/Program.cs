@@ -6,9 +6,9 @@ namespace CourseApp
     {
         public static double Calc(double a, double b, double x)
         {
-            var t1 = a * Math.Pow(x, 1 / 3);
+            var t1 = a * Math.Pow(x, 1.0 / 3.0);
             var t2 = b * Math.Log(x, 5);
-            var t3 = Math.Pow(Math.Log(x - 1), 3);
+            var t3 = Math.Pow(Math.Log(x - 1, 10), 3);
             var y = (t1 - t2) / t3;
             return y;
         }
@@ -45,7 +45,7 @@ namespace CourseApp
             double b = 2.7;
             double[] theArray2 = { 1.9, 2.15, 2.34, 2.74, 3.16 };
             var theArray1 = new(double x, double y)[11];
-            theArray1 = TaskA(a, b, 1.5, 0.2, 3.5);
+            theArray1 = TaskA(a, b, 1.5, 0.4, 3.5);
             Console.WriteLine("TaskA");
             foreach (var i in theArray1)
             {
