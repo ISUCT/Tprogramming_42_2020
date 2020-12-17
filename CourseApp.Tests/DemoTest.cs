@@ -19,7 +19,7 @@ namespace CourseApp.Tests
         { 
             var actualResult = Program.Calc(a, b, x); 
             Assert.Equal(exp, actualResult, 3); 
-        } 
+        }
 
         [Fact] 
         public void TestTaskA() 
