@@ -17,7 +17,7 @@ namespace CourseApp
            {
                if (xn > xk)
                {
-                   var empty = new ArrаyList();
+                   var empty = new ArrayList();
                    return empty;
                }
 
