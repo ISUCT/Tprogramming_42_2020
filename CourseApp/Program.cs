@@ -12,28 +12,34 @@ namespace CourseApp
             return y;
         }
 
-           public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
+           public ArrayList TaskA(double a, double b, double xn, double xk, double dx)
            {
-               var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
+               if (xn > xk)
+               {
+                   var empty = new ArrаyList();
+                   return empty;
+               }
+
+               var res = new ArrayList();
                int i = 0;
                for (var x = xn; x <= xk; x += dx)
                {
                    var y = Calc(a, b, x);
-                   res[i] = (x, y);
+                   res.Add((x, y));
                    i++;
                 }
 
             return res;
             }
 
-           public static (double x, double y)[] TaskB(double a, double b, double[] xItems)
+           public ArrayList TaskB(double a, double b, double[] xItems)
            {
-               var res = new(double, double)[xItems.Length];
+               var res = new ArrayList();
                int i = 0;
                foreach (var x in xItems)
                {
                    var y = Calc(a, b, x);
-                   res[i] = (x, y);
+                   res.Add((x, y));
                    i++;
                 }
 
