@@ -15,7 +15,7 @@ namespace CourseApp {
         public Zhivotnoe(string newName, string newBreed)
         : this(newName, newBreed, 0) { }
  
-        public Zhivotnoe(string newName, string newBreed, int newAge) {
+        public Zhivotnoe(string newName, string newBreed, int newAge){
             this.Name = newName;
             this.Breed = newBreed;
             this.Age = newAge;
@@ -72,23 +72,5 @@ namespace CourseApp {
         }
  
         public abstract string Vois();
-    }
- 
-    public class Rabbit : Zhivotnoe {
-        public Rabbit()
-        : base() { }
- 
-        public Rabbit(string newName)
-        : base(newName) { }
- 
-        public Rabbit(string newName, string newBreed)
-        : base(newName, newBreed) { }
- 
-        public Rabbit(string newName, string newBreed, int newAge)
-        : base(newName, newBreed, newAge) { }
- 
-        public override string ToString() => $"Rabbit:\nName: {Name}  Breed: {Breed}  Age: {Age}";
- 
-        public override string Vois() => "*Фы *\n";
     }
 }
