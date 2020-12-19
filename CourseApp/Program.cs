@@ -23,7 +23,7 @@ namespace CourseApp
 
             var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
             int i = 0;
-            for (var x = xn; x == xk; x += dx)
+            for (var x = xn; x <= xk; x += dx)
             {
                 var y = Calc(a, b, x);
                 res[i] = (x, y);
