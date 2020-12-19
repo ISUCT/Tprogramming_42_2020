@@ -15,6 +15,12 @@ namespace CourseApp
 
         public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
         {
+            if (xn > xk)
+            {
+                var empty = new(double, double)[0];
+                return empty;
+            }
+
             var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
             int i = 0;
             for (var x = xn; x == xk; x += dx)
