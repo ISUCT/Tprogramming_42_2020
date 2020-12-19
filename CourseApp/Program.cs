@@ -9,7 +9,7 @@ namespace CourseApp
         {
             var chislitel = Math.Acos(Math.Pow(x, 2) - Math.Pow(b, 2));
             var znamenatel = Math.Asin(Math.Pow(x, 2) - Math.Pow(a, 2));
-            var y = chislitel/znamenatel;
+            var y = chislitel / znamenatel;
             return y;
         }
 
@@ -17,7 +17,7 @@ namespace CourseApp
         {
             var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
             int i = 0;
-            for (var x = xn; x = xk; x += dx)
+            for (var x = xn; x == xk; x += dx)
             {
                 var y = Calc(a, b, x);
                 res[i] = (x, y);
@@ -50,7 +50,7 @@ namespace CourseApp
             foreach (var item in taskA)
             {
                 var(x, y) = item;
-                Console.WriteLine($"x ={ x}, y ={ y}");
+                Console.WriteLine($"x ={x}, y ={y}");
             }
 
             Console.WriteLine("-------Task B---------");
@@ -59,7 +59,7 @@ namespace CourseApp
             foreach (var item in taskB)
             {
                 var(x, y) = item;
-                Console.WriteLine($"x ={ x}, y ={ y}");
+                Console.WriteLine($"x ={x}, y ={y}");
             }
 
             Console.WriteLine("Hello World!");
