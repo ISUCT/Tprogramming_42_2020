@@ -44,8 +44,10 @@ namespace CourseApp
 
                return res;
             }
+    }
+}
 
-           public static void Main(string[] args)
+           /*public static void Main(string[] args)
            {
                const double a = 1.35;
                const double b = 0.98;
@@ -71,4 +73,4 @@ namespace CourseApp
                Console.ReadLine();
            }
     }
-}
+}*/
