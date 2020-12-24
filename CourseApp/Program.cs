@@ -68,6 +68,10 @@ namespace CourseApp
             var ship2 = new Ship(10, 100, 5);
             ship2.GetLength();
             var ship3 = new Ship();
+            var auto1 = new Auto(3, 150, 5);
+            auto1.GetInfo();
+            var auto2 = new Auto(3, 100, 5);
+            auto2.GetLength();
             Console.ReadLine();
         }
     }

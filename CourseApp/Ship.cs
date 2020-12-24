@@ -2,11 +2,9 @@ using System;
 
 namespace CourseApp
 {
-    public class Ship
+    public class Ship : Transport
     {
-        private int length;
         private int displacement;
-        private int people;
 
         public Ship(int length, int displacement, int people)
         {
@@ -16,48 +14,8 @@ namespace CourseApp
         }
 
         public Ship()
+        : base()
         {
-            Console.WriteLine("Значения были не заданы");
-        }
-
-        public int People
-        {
-            get
-            {
-                return people;
-            }
-
-            set
-            {
-                if (value == 0)
-                {
-                    Console.WriteLine($"Матросы = 0");
-                }
-                else
-                {
-                    people = value;
-                }
-            }
-        }
-
-        public int Length
-        {
-            get
-            {
-                return length;
-            }
-
-            set
-            {
-                if (value == 0)
-                {
-                    Console.WriteLine($"Длина = 0");
-                }
-                else
-                {
-                    length = value;
-                }
-            }
         }
 
         public int Displacement
@@ -85,14 +43,9 @@ namespace CourseApp
             return $"Lenght = {Length}, Displacement = {Displacement}, People = {People}";
         }
 
-        public void GetInfo()
+        public override void GetInfo()
         {
-            Console.WriteLine($"Длина = {length.ToString()}, Водоизмещеие = {displacement.ToString()}, Матросы = {people.ToString()}");
-        }
-
-        public void GetLength()
-        {
-            Console.WriteLine($"Длина = {length.ToString()}");
+            Console.WriteLine($"Длина = {Length.ToString()}, Водоизмещеие = {displacement.ToString()}, Матросы = {People.ToString()}");
         }
 
         public void GetDisplacement()
@@ -100,9 +53,9 @@ namespace CourseApp
             Console.WriteLine($"Водоизмещеие = {displacement.ToString()}");
         }
 
-        public void GetPeople()
+        public override void GetPeople()
         {
-            Console.WriteLine($"Матросы = {people.ToString()}");
+            Console.WriteLine($"Матросы = {People.ToString()}");
         }
     }
 }
