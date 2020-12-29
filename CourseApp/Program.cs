@@ -63,11 +63,11 @@ namespace CourseApp
 
             Console.WriteLine("---------------------------------------");
             Cat cat1 = new Cat("Муха", 5, "Трехцветная");
-            cat1.GetInfo();
+            cat1.ShowInfo();
             Cat cat2 = new Cat("Муха", "Трехцветная");
-            cat2.GetInfo();
+            cat2.ShowInfo();
             Cat cat3 = new Cat(5, "Трехцветная");
-            cat3.GetInfo();
+            cat3.ShowInfo();
         }
     }
 }

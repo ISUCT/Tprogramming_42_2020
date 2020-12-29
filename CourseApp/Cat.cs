@@ -2,10 +2,8 @@ using System;
 
 namespace CourseApp
 {
-    public class Cat
+    public class Cat : Animal
     {
-        private string name;
-        private int age;
         private string color;
 
         public Cat(string name, string color)
@@ -19,45 +17,9 @@ namespace CourseApp
         }
 
         public Cat(string name, int age, string color)
+        : base(name, age)
         {
-            this.name = name;
-            this.Age = age;
             this.color = color;
-        }
-
-        public int Age
-        {
-            get
-            {
-                return age;
-            }
-
-            set
-            {
-                if (value < -1)
-                {
-                    Console.WriteLine($"Возраст имеет недопустимое значение");
-                }
-                else
-                {
-                    age = value;
-                }
-            }
-        }
-
-        public string GetName()
-        {
-            return $"Имя: {name} ";
-        }
-
-        public string GetAge()
-        {
-            if (Age == -1)
-            {
-                return "Возраст: Неизвестно ";
-            }
-
-            return $"Возраст: {Age} ";
         }
 
         public string GetColor()
@@ -65,14 +27,14 @@ namespace CourseApp
             return $"Цвет: {color} ";
         }
 
-        public void GetInfo()
+        public void ShowInfo()
         {
-            Console.WriteLine(this.GetName() + this.GetAge() + this.GetColor());
+            Console.WriteLine(this.GetInfo() + this.GetColor());
         }
 
-        public void AgeToString()
+        public void Sound()
         {
-            Console.WriteLine($"Возраст: {age.ToString()}");
+            Console.WriteLine("Meeeo");
         }
     }
 }
