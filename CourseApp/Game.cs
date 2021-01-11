@@ -6,7 +6,7 @@ namespace CourseApp
 {
     public class Game
     {
-        public static int Start()
+        public int Start()
         {
             Console.Write("Введите количество персонажей: ");
             string tempNumber = Console.ReadLine();
@@ -15,7 +15,7 @@ namespace CourseApp
             return number;
         }
 
-        public static void Play(int countOfnames)
+        public void Play(int countOfnames)
         {
             Hero hero = new Hero();
             int tempCount = (int)countOfnames / 3;
@@ -58,7 +58,7 @@ namespace CourseApp
             hero.Fight();
         }
 
-        public static void Main()
+        public void Launch()
         {
             int countOfnames = Start();
             Play(countOfnames);
