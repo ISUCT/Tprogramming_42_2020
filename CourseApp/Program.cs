@@ -113,6 +113,11 @@ namespace CourseApp
                 Console.WriteLine(person.GoingSomewhere());
             }
 
+            Console.WriteLine("------- RPS SAGA -------");
+            int playersInGame = 0;
+            playersInGame = Game.StartGame(playersInGame);
+            Battle.Tournament(playersInGame);
+
             Console.ReadLine();
         }
     }
