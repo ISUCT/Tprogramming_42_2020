@@ -40,6 +40,36 @@ namespace CourseApp
             return res;
         }
 
+        public static string Age(DateTime brithday, DateTime today)
+        {
+            if (today > brithday)
+            {
+                int year = new DateTime((today - brithday).Ticks).Year - 1;
+                int month = new DateTime((today - brithday).Ticks).Month - 1;
+                int day = today.Day - brithday.Day;
+                if (day < 0)
+                {
+                    if (month == 0)
+                    {
+                        year--;
+                    }
+
+                    month = today.AddMonths(-brithday.Month).Month - 1;
+                    day = today.AddDays(-brithday.Day).Day + 1;
+                }
+
+                return $"Age: Year:{year} Month:{month} Day:{day}";
+            }
+            else if (today == brithday)
+            {
+                return "Даты совпадают";
+            }
+            else
+            {
+                return "Дата еще не наступила";
+            }
+        }
+
         public static void Main(string[] args)
         {
             const double a = 2.5;
@@ -72,6 +102,11 @@ namespace CourseApp
             auto1.GetInfo();
             var auto2 = new Auto(3, 100, 5);
             auto2.GetLength();
+
+            Console.WriteLine($"---------- Date ---------------\n");
+            DateTime brithday = new DateTime(2020, 10, 12);
+            DateTime today = DateTime.Today;
+            Console.WriteLine(Age(brithday, today));
             Console.ReadLine();
         }
     }
