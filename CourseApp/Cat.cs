@@ -32,7 +32,7 @@ namespace CourseApp
             Console.WriteLine(this.GetInfo() + this.GetColor());
         }
 
-        public void Sound()
+        public override void MakeSound()
         {
             Console.WriteLine("Meeeo");
         }

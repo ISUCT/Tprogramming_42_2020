@@ -48,6 +48,10 @@ namespace CourseApp
             return $"Имя: {name} ";
         }
 
+        public virtual void MakeSound()
+        {
+        }
+
         public string GetAge()
         {
             if (Age == -1)
