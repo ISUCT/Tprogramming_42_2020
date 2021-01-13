@@ -6,18 +6,18 @@ namespace CourseApp
     {
         private string color;
 
-        public Cat(string name, string color)
-        : this(name, -1, color)
+        public Cat(string name, int year, int month, int day)
+        : this(name, year, month, day, "Неизвестно")
         {
         }
 
-        public Cat(int age, string color)
-        : this("Неизвестно", age, color)
+        public Cat(int year, int month, int day, string color)
+        : this("Неизвестно", year, month, day, color)
         {
         }
 
-        public Cat(string name, int age, string color)
-        : base(name, age)
+        public Cat(string name, int year, int month, int day, string color)
+        : base(name, year, month, day)
         {
             this.color = color;
         }
