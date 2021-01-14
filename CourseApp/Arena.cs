@@ -8,10 +8,12 @@ namespace CourseApp
     {
         private Random randomValue = new Random();
         private List<Hero> heroes;
+        private Logger logger = new Logger();
 
-        public Arena(List<Hero> listOfHero)
+        public Arena(List<Hero> listOfHero, Logger transferLogger)
         {
             heroes = listOfHero;
+            logger = transferLogger;
         }
 
         public void UseAbitilty(Hero hero, Hero enemy)
@@ -55,22 +57,6 @@ namespace CourseApp
             }
         }
 
-        public void DisplayInfoAbility(Hero hero, Hero enemy)
-        {
-            if (hero.NameClass == "Fencer")
-            {
-                    Console.WriteLine($"({hero.NameClass}) {hero.Name} использует (Удар возмездия) и наносит урон {hero.Damage} противнику ({enemy.NameClass}) {enemy.Name}");
-            }
-            else if (hero.NameClass == "Archer")
-            {
-                    Console.WriteLine($"({hero.NameClass}) {hero.Name} использует (Огненные стрелы) и наносит урон {hero.Damage} противнику ({enemy.NameClass}) {enemy.Name}");
-            }
-            else if (hero.NameClass == "Warlock")
-            {
-                    Console.WriteLine($"({hero.NameClass}) {hero.Name} использует (Заворожение) и наносит урон {hero.Damage} противнику ({enemy.NameClass}) {enemy.Name}");
-            }
-        }
-
         public string Fight()
         {
             string nameWiner = string.Empty;
@@ -79,14 +65,14 @@ namespace CourseApp
             int count = 0;
             while (heroes.Count > 1)
             {
-                Console.WriteLine($"Кон : {con}");
+                logger.LogCon(con);
                 if (count == conNumbers)
                 {
                     count = 0;
                 }
 
                 count++;
-                Console.WriteLine($"({heroes[0].NameClass}) {heroes[0].Name} vs ({heroes[1].NameClass}) {heroes[1].Name}");
+                logger.LogFight(heroes[0].NameClass, heroes[0].Name, heroes[1].NameClass, heroes[1].Name);
                 while ((heroes[0].Fighting >= 0) && (heroes[1].Fighting >= 0))
                 {
                     if (randomValue.Next(0, 10) == 1)
@@ -99,37 +85,16 @@ namespace CourseApp
                     }
 
                     heroes[0].Fighting = heroes[1].Damage;
-                    if (heroes[1].Ability == true)
-                    {
-                        DisplayInfoAbility(heroes[1], heroes[0]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"({heroes[1].NameClass}) {heroes[1].Name} наносит урон {heroes[1].Damage} противнику ({heroes[0].NameClass}) {heroes[0].Name}");
-                    }
+                    logger.LogAbilityHero(heroes[1].Ability, heroes[1], heroes[0]);
 
                     heroes[1].Fighting = heroes[0].Damage;
-                    if (heroes[0].Ability == true)
-                    {
-                        DisplayInfoAbility(heroes[0], heroes[1]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"({heroes[0].NameClass}) {heroes[0].Name} наносит урон {heroes[0].Damage} противнику ({heroes[1].NameClass}) {heroes[1].Name}");
-                    }
+                    logger.LogAbilityHero(heroes[0].Ability, heroes[0], heroes[1]);
 
                     RecoveryDamage(heroes[0], heroes[1]);
                     RecoveryDamage(heroes[1], heroes[0]);
                 }
 
-                if (heroes[0].Fighting <= 0)
-                {
-                    Console.WriteLine($"({heroes[0].NameClass}) {heroes[0].Name} погибает \n");
-                }
-                else if (heroes[1].Fighting <= 0)
-                {
-                    Console.WriteLine($"({heroes[1].NameClass}) {heroes[1].Name} погибает \n");
-                }
+                logger.LogDeath(heroes[0], heroes[1]);
 
                 if (heroes.Count > 2)
                 {
@@ -141,7 +106,7 @@ namespace CourseApp
                         rnd_player1 = randomValue.Next(2, heroes.Count);
                     }
 
-                    Console.WriteLine($"({heroes[rnd_player1].NameClass}) {heroes[rnd_player1].Name} vs ({heroes[rnd_player2].NameClass}) {heroes[rnd_player2].Name}");
+                    logger.LogFight(heroes[rnd_player1].NameClass, heroes[rnd_player1].Name, heroes[rnd_player2].NameClass, heroes[rnd_player2].Name);
                     while ((heroes[rnd_player1].Fighting >= 0) && (heroes[rnd_player2].Fighting >= 0))
                     {
                         if (randomValue.Next(0, 10) == 1)
@@ -154,25 +119,9 @@ namespace CourseApp
                         }
 
                         heroes[rnd_player1].Fighting = heroes[rnd_player2].Damage;
-                        if (heroes[rnd_player2].Ability == true)
-                        {
-                            DisplayInfoAbility(heroes[rnd_player2], heroes[rnd_player1]);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"({heroes[rnd_player2].NameClass}) {heroes[rnd_player2].Name} наносит урон {heroes[rnd_player2].Damage} противнику ({heroes[rnd_player1].NameClass}) {heroes[rnd_player1].Name}");
-                        }
-
+                        logger.LogAbilityHero(heroes[rnd_player2].Ability, heroes[rnd_player2], heroes[rnd_player1]);
                         heroes[rnd_player2].Fighting = heroes[rnd_player1].Damage;
-                        if (heroes[rnd_player1].Ability == true)
-                        {
-                            DisplayInfoAbility(heroes[rnd_player1], heroes[rnd_player2]);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"({heroes[rnd_player1].NameClass}) {heroes[rnd_player1].Name} наносит урон {heroes[rnd_player1].Damage} противнику ({heroes[rnd_player2].NameClass}) {heroes[rnd_player2].Name}");
-                        }
-
+                        logger.LogAbilityHero(heroes[rnd_player1].Ability, heroes[rnd_player1], heroes[rnd_player2]);
                         RecoveryDamage(heroes[rnd_player1], heroes[rnd_player2]);
                         RecoveryDamage(heroes[rnd_player2], heroes[rnd_player1]);
                     }
@@ -180,13 +129,13 @@ namespace CourseApp
                     if (heroes[rnd_player1].Fighting <= 0)
                     {
                         heroes[rnd_player2].Fighting = -randomValue.Next(50, 200);
-                        Console.WriteLine($"({heroes[rnd_player1].NameClass}) {heroes[rnd_player1].Name} погибает \n");
+                        logger.LogDeath(heroes[rnd_player1], heroes[rnd_player2]);
                         heroes.RemoveAt(rnd_player1);
                     }
                     else if (heroes[rnd_player2].Fighting <= 0)
                     {
                         heroes[rnd_player1].Fighting = -randomValue.Next(50, 200);
-                        Console.WriteLine($"({heroes[rnd_player2].NameClass}) {heroes[rnd_player2].Name} погибает \n");
+                        logger.LogDeath(heroes[rnd_player2], heroes[rnd_player1]);
                         heroes.RemoveAt(rnd_player2);
                     }
                 }

@@ -44,6 +44,8 @@ namespace CourseApp
             "Nikolay"
         };
 
+        private Logger logger = new Logger();
+
         private int fightValue;
         private int countArchers;
         private int countFencers;
@@ -103,18 +105,11 @@ namespace CourseApp
 
         public virtual string NameClass { get; set;  }
 
-        public void DisplayClasses()
-        {
-            foreach (Hero item in heroes)
-            {
-                Console.WriteLine($"Name: {item.Name}, Class: {item.NameClass}, Damage: {item.Damage}, Power: {item.PowerRnd}, Health: {item.HealthRnd}");
-            }
-
-            Console.Write("\n");
-        }
-
         public void Matchmaking(int countOfplayers, Archer[] archers, Fencer[] fencers, Warlock[] warlocks)
         {
+            logger.LogPath();
+            logger.LogClearStart();
+            logger.LogStandard("MatchMaking .... \n");
             foreach (Archer item in archers)
             {
                 heroes.Add(new Archer(item.Name));
@@ -130,7 +125,7 @@ namespace CourseApp
                 heroes.Add(new Warlock(item.Name));
             }
 
-            DisplayClasses();
+            logger.LogDisplayClasses(heroes);
             countArchers = archers.Length;
             countFencers = fencers.Length;
             countWarlocks = warlocks.Length;
@@ -169,11 +164,11 @@ namespace CourseApp
 
         public void Fight()
         {
-            Console.WriteLine("Fight .... \n");
+            logger.LogStandard("Fight .... \n");
             string nameWiner;
-            Arena arena = new Arena(heroes);
+            Arena arena = new Arena(heroes, logger);
             nameWiner = arena.Fight();
-            Console.WriteLine($"Winner: {heroes[0].Name}");
+            logger.LogFightFinish(heroes);
         }
     }
 }

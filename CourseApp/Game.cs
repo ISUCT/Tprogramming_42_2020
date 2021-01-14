@@ -53,7 +53,6 @@ namespace CourseApp
                 warlocks[i] = new Warlock(names[i + archers.Length + fencers.Length]);
             }
 
-            Console.WriteLine("MatchMaking .... \n");
             hero.Matchmaking(countOfnames, archers, fencers, warlocks);
             hero.Fight();
         }
