@@ -9,11 +9,17 @@ namespace RPG
         {
         }
 
-        public void Fight(List<Player> players)
+        public void Fight()
         {
+            List<Player> players = new List<Player>();
             string[] namearr = new string[20] { "Coolz", "Jskonst", "MixerXXL", "Etogjesanya", "Exideinside", "Nugmate", "D1njo", "4i4a", "Bandi", "Incris", "Hroma", "MrColter", "Geralt", "Stalin", "Swearless", "Yanix", "Slava228", "Ciri", "Plotva", "Linys" };
             Console.WriteLine("Введите количество игроков:");
             int number = Convert.ToInt16(Console.ReadLine());
+            if (number % 2.0 != 0)
+            {
+                throw new InvalidOperationException("Количество игроков нечетное");
+            }
+
             for (int i = 0; i < number; i++)
             {
                 Random rnd = new Random();
@@ -23,15 +29,15 @@ namespace RPG
                 switch (classkey)
                 {
                     case 1:
-                        Knight knight = new Knight($"{name} {i + 1}");
+                        Knight knight = new Knight($"(Рыцарь) {name} {i + 1}");
                         players.Add(knight);
                         break;
                     case 2:
-                        Mage mage = new Mage($"{name} {i + 1}");
+                        Mage mage = new Mage($"(Маг) {name} {i + 1}");
                         players.Add(mage);
                         break;
                     case 3:
-                        Archer archer = new Archer($"{name} {i + 1}");
+                        Archer archer = new Archer($"(Лучник) {name} {i + 1}");
                         players.Add(archer);
                         break;
                     default:
@@ -40,33 +46,48 @@ namespace RPG
                 }
             }
 
-            for (int i = 0; i < players.Count; i = i + 2)
+            int count = players.Count / 2;
+            int kon = 1;
+            for (int j = 0; j <= count; j = j + 2)
             {
-                Console.WriteLine($"------------Да начнётся битва------------");
-                int p1Health = players[i].GetHealth();
-                int p2Health = players[i + 1].GetHealth();
-                Console.WriteLine($"Игрок_1: {players[i].Name}, HP = {p1Health}");
-                Console.WriteLine($"Игрок_2: {players[i + 1].Name}, HP = {p2Health}");
-                while (p1Health > 0 && p2Health > 0)
+                Console.WriteLine($"Кон {kon++}");
+                for (int i = 0; i < players.Count; i++)
                 {
-                    p1Health = p1Health - players[i + 1].Damage;
-                    Console.WriteLine($"{players[i + 1].Name} наносит урон {players[i + 1].Damage} противнику {players[i].Name}");
-                    Console.WriteLine($"HP {players[i].Name} = {p1Health}");
-                    if (p1Health > 0)
+                    if (players.Count > i + 1)
                     {
-                        p2Health = p2Health - players[i].Damage;
-                        Console.WriteLine($"{players[i].Name} наносит урон {players[i].Damage} противнику {players[i + 1].Name}");
-                        Console.WriteLine($"HP {players[i + 1].Name} = {p2Health}");
+                        Console.WriteLine($"------------Да начнётся битва------------");
+                        int p1Health = players[i].GetHealth();
+                        int p2Health = players[i + 1].GetHealth();
+                        Console.WriteLine($"Игрок_1: {players[i].Name}, HP = {p1Health}");
+                        Console.WriteLine($"Игрок_2: {players[i + 1].Name}, HP = {p2Health}");
+                        while (p1Health > 0 && p2Health > 0)
+                        {
+                            p1Health = p1Health - players[i + 1].Damage;
+                            Console.WriteLine($"{players[i + 1].Name} наносит урон {players[i + 1].Damage} противнику {players[i].Name}");
+                            Console.WriteLine($"HP {players[i].Name} = {p1Health}");
+                            if (p1Health > 0)
+                            {
+                                p2Health = p2Health - players[i].Damage;
+                                Console.WriteLine($"{players[i].Name} наносит урон {players[i].Damage} противнику {players[i + 1].Name}");
+                                Console.WriteLine($"HP {players[i + 1].Name} = {p2Health}");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"-------{players[i + 1]} победил-----------");
+                                players.RemoveAt(i);
+                            }
+                        }
+
+                        if (p2Health <= 0)
+                        {
+                            Console.WriteLine($"-------{players[i]} победил-----------");
+                            players.RemoveAt(i + 1);
+                        }
                     }
                     else
                     {
-                        Console.WriteLine($"-------{players[i + 1]} победил-----------");
+                        j--;
                     }
-                }
-
-                if (p2Health <= 0)
-                {
-                    Console.WriteLine($"-------{players[i]} победил-----------");
                 }
             }
         }

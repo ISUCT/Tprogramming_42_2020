@@ -7,9 +7,8 @@ namespace RPG
     {
         public static void Main(string[] args)
         {
-            List<Player> players = new List<Player>();
             Logger arena = new Logger();
-            arena.Fight(players);
+            arena.Fight();
             Console.ReadLine();
         }
     }
