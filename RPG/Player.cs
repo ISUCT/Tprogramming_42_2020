@@ -6,6 +6,7 @@ namespace RPG
     {
         private double health;
         private double damage;
+        private double isFrozen = 0;
         private Random rnd = new Random();
 
         public Player(string name)
@@ -14,11 +15,14 @@ namespace RPG
             health = rnd.Next(50, 150);
             damage = rnd.Next(20, 40);
             Damage = damage;
+            IsFrozen = isFrozen;
         }
 
         public string Name { get; set; }
 
         public double Damage { get; set; }
+
+        public double IsFrozen { get; set; }
 
         public override string ToString()
         {

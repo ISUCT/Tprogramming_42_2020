@@ -63,27 +63,51 @@ namespace RPG
                         {
                             var ult = rnd.Next(2) == 1;
                             double prevDamagep2 = players[i + 1].Damage;
-                            if (ult)
+                            if (players[i].IsFrozen == 0)
                             {
-                                players[i + 1].UseUlt();
+                                if (ult)
+                                {
+                                    players[i + 1].UseUlt();
+                                }
+
+                                if (players[i + 1].IsFrozen == 0)
+                                {
+                                    p1Health = p1Health - players[i + 1].Damage;
+                                    Console.WriteLine($"{players[i + 1].Name} наносит урон {players[i + 1].Damage} противнику {players[i].Name}");
+                                    Console.WriteLine($"HP {players[i].Name} = {p1Health}");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{players[i + 1].Name} пропускает ход");
                             }
 
-                            p1Health = p1Health - players[i + 1].Damage;
-                            Console.WriteLine($"{players[i + 1].Name} наносит урон {players[i + 1].Damage} противнику {players[i].Name}");
-                            Console.WriteLine($"HP {players[i].Name} = {p1Health}");
                             players[i + 1].Damage = prevDamagep2;
+                            players[i].IsFrozen = 0;
                             if (p1Health > 0)
                             {
                                 double prevDamagep1 = players[i].Damage;
-                                if (ult)
+                                if (players[i + 1].IsFrozen == 0)
                                 {
-                                    players[i].UseUlt();
+                                    if (ult)
+                                    {
+                                        players[i].UseUlt();
+                                    }
+
+                                    if (players[i].IsFrozen == 0)
+                                    {
+                                        p2Health = p2Health - players[i].Damage;
+                                        Console.WriteLine($"{players[i].Name} наносит урон {players[i].Damage} противнику {players[i + 1].Name}");
+                                        Console.WriteLine($"HP {players[i + 1].Name} = {p2Health}");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{players[i].Name} пропускает ход");
                                 }
 
-                                p2Health = p2Health - players[i].Damage;
-                                Console.WriteLine($"{players[i].Name} наносит урон {players[i].Damage} противнику {players[i + 1].Name}");
-                                Console.WriteLine($"HP {players[i + 1].Name} = {p2Health}");
                                 players[i].Damage = prevDamagep1;
+                                players[i + 1].IsFrozen = 0;
                             }
                             else
                             {

@@ -8,5 +8,12 @@ namespace RPG
         : base(name)
         {
         }
+
+        public override double UseUlt()
+        {
+            IsFrozen = 1;
+            Console.WriteLine($"<<<<<<{Name} ультанул и заморозил соперника>>>>>>");
+            return IsFrozen;
+        }
     }
 }
