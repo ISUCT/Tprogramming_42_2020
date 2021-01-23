@@ -4,8 +4,8 @@ namespace RPG
 {
     public abstract class Player
     {
-        private int health;
-        private int damage;
+        private double health;
+        private double damage;
         private Random rnd = new Random();
 
         public Player(string name)
@@ -18,16 +18,21 @@ namespace RPG
 
         public string Name { get; set; }
 
-        public int Damage { get; set; }
+        public double Damage { get; set; }
 
         public override string ToString()
         {
             return Name;
         }
 
-        public int GetHealth()
+        public double GetHealth()
         {
             return health;
+        }
+
+        public virtual double UseUlt()
+        {
+            return Damage;
         }
     }
 }
