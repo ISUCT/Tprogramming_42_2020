@@ -8,5 +8,15 @@ namespace RPG
         : base(name)
         {
         }
+
+        public override double UseUlt()
+        {
+            if (IsFire == 0)
+            {
+                IsFire = 1;
+            }
+
+            return IsFire;
+        }
     }
 }

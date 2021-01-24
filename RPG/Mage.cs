@@ -12,7 +12,7 @@ namespace RPG
         public override double UseUlt()
         {
             IsFrozen = 1;
-            Console.WriteLine($"<<<<<<{Name} ультанул и заморозил соперника>>>>>>");
+            Console.WriteLine($"<<<<<<{Name} заморозил противника>>>>>>");
             return IsFrozen;
         }
     }

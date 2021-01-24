@@ -72,8 +72,23 @@ namespace RPG
 
                                 if (players[i + 1].IsFrozen == 0)
                                 {
-                                    p1Health = p1Health - players[i + 1].Damage;
-                                    Console.WriteLine($"{players[i + 1].Name} наносит урон {players[i + 1].Damage} противнику {players[i].Name}");
+                                    if (players[i + 1].IsFire == 1)
+                                    {
+                                        Console.WriteLine($"<<<<<<{players[i + 1].Name} выпускает огненные стрелы в противника>>>>>>");
+                                        players[i + 1].IsFire = 2;
+                                    }
+                                    else
+                                    {
+                                        p1Health = p1Health - players[i + 1].Damage;
+                                        Console.WriteLine($"{players[i + 1].Name} наносит урон {players[i + 1].Damage} противнику {players[i].Name}");
+                                    }
+
+                                    if (players[i + 1].IsFire == 2)
+                                    {
+                                        p1Health = p1Health - 2;
+                                        Console.WriteLine($"{players[i]} горит и теряет 2 HP");
+                                    }
+
                                     Console.WriteLine($"HP {players[i].Name} = {p1Health}");
                                 }
                             }
@@ -96,8 +111,23 @@ namespace RPG
 
                                     if (players[i].IsFrozen == 0)
                                     {
-                                        p2Health = p2Health - players[i].Damage;
-                                        Console.WriteLine($"{players[i].Name} наносит урон {players[i].Damage} противнику {players[i + 1].Name}");
+                                        if (players[i].IsFire == 1)
+                                        {
+                                            Console.WriteLine($"<<<<<<{players[i].Name} выпускает огненные стрелы в противника>>>>>>");
+                                            players[i].IsFire = 2;
+                                        }
+                                        else
+                                        {
+                                            p2Health = p2Health - players[i].Damage;
+                                            Console.WriteLine($"{players[i].Name} наносит урон {players[i].Damage} противнику {players[i + 1].Name}");
+                                        }
+
+                                        if (players[i].IsFire == 2)
+                                        {
+                                            p2Health = p2Health - 2;
+                                            Console.WriteLine($"{players[i + 1]} горит и теряет 2 HP");
+                                        }
+
                                         Console.WriteLine($"HP {players[i + 1].Name} = {p2Health}");
                                     }
                                 }
