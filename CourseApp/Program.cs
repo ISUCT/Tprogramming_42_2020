@@ -67,6 +67,23 @@ namespace CourseApp
 
             Console.WriteLine("Hello World!");
             Console.WriteLine("Akim Budyljastov");
+            Cat cat1 = new Cat("rjn1", " ");
+            Cat cat2 = new Cat("cat2", "abyssinian", 2);
+            Animal[] animals = new Animal[] { cat1, cat2 };
+            foreach (var animal in animals)
+            {
+                Console.WriteLine(animal);
+            }
+
+            Console.WriteLine();
+            cat1.EditInf("Cat-1", "a", 1);
+
+            foreach (var animal in animals)
+            {
+                Console.WriteLine(animal);
+                Console.WriteLine(animal.Vois());
+            }
+
             Console.ReadLine();
         }
     }
