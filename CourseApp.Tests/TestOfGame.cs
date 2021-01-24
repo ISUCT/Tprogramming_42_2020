@@ -59,8 +59,8 @@ namespace CourseApp.Tests
         [Fact]
         public void TestFight()
         {
-            Hero hero1 = new Archer("Name1");
-            Hero hero2 = new Fencer("Name2");
+            Hero hero1 = new Warlock("Name1");
+            Hero hero2 = new Warlock("Name2");
             hero1.Damage = 5;
             hero2.Damage = 8;
             hero1.HealthRnd = 50;
