@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CourseApp
 {
-    internal class Arena
+    public class Arena
     {
         private Random randomValue = new Random();
         private List<Hero> heroes;
@@ -16,7 +16,7 @@ namespace CourseApp
             logger = transferLogger;
         }
 
-        public void UseAbitilty(Hero hero, Hero enemy)
+        public void UseAbility(Hero hero, Hero enemy)
         {
             string className = hero.NameClass;
             if (className == "Fencer")
@@ -77,11 +77,11 @@ namespace CourseApp
                 {
                     if (randomValue.Next(0, 10) == 1)
                     {
-                        UseAbitilty(heroes[0], heroes[1]);
+                        UseAbility(heroes[0], heroes[1]);
                     }
                     else if (randomValue.Next(0, 10) == 0)
                     {
-                        UseAbitilty(heroes[1], heroes[0]);
+                        UseAbility(heroes[1], heroes[0]);
                     }
 
                     heroes[0].Fighting = heroes[1].Damage;
@@ -111,11 +111,11 @@ namespace CourseApp
                     {
                         if (randomValue.Next(0, 10) == 1)
                         {
-                            UseAbitilty(heroes[rnd_player1], heroes[rnd_player2]);
+                            UseAbility(heroes[rnd_player1], heroes[rnd_player2]);
                         }
                         else if (randomValue.Next(0, 10) == 0)
                         {
-                            UseAbitilty(heroes[rnd_player2], heroes[rnd_player1]);
+                            UseAbility(heroes[rnd_player2], heroes[rnd_player1]);
                         }
 
                         heroes[rnd_player1].Fighting = heroes[rnd_player2].Damage;

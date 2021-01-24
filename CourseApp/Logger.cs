@@ -5,9 +5,18 @@ using System.IO;
 
 namespace CourseApp
 {
-    internal class Logger
+    public class Logger
     {
         private string path;
+
+        public Logger()
+        {
+        }
+
+        public Logger(string pathTransfer)
+        {
+            path = pathTransfer;
+        }
 
         public void LogClearStart()
         {
