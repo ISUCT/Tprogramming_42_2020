@@ -59,8 +59,8 @@ namespace CourseApp.Tests
         [Fact]
         public void TestFight()
         {
-            Hero hero1 = new Warlock("Name1");
-            Hero hero2 = new Warlock("Name2");
+            Hero hero1 = new Fencer("Name1");
+            Hero hero2 = new Archer("Name2");
             hero1.Damage = 5;
             hero2.Damage = 8;
             hero1.HealthRnd = 50;
@@ -68,7 +68,7 @@ namespace CourseApp.Tests
             List<Hero> listofhero = new List<Hero>() { hero1, hero2 };
             Logger logger = new Logger("Log.txt");
             Arena arena = new Arena(listofhero, logger);
-            Assert.Equal("Name1", arena.Fight());
+            Assert.Equal("Name2", arena.Fight());
         }
     }
 }
