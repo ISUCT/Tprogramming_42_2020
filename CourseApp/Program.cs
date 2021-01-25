@@ -59,6 +59,9 @@ namespace CourseApp
 
             Console.WriteLine("Hello World!");
             Console.WriteLine("Andrej Smirnov");
+            Pistol pm = new Pistol("PM", 9, 7);
+            Console.WriteLine(pm.Shot());
+            Console.WriteLine(pm.Clip);
             Console.ReadLine();
         }
     }
