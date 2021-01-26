@@ -5,11 +5,7 @@ namespace RPG
 {
     public class Logger
     {
-        public Logger()
-        {
-        }
-
-        public void Fight()
+        public static void Fight()
         {
             Random rnd = new Random();
             List<Player> players = new List<Player>();

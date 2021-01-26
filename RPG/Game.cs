@@ -7,8 +7,7 @@ namespace RPG
     {
         public static void Main(string[] args)
         {
-            Logger arena = new Logger();
-            arena.Fight();
+            Logger.Fight();
             Console.ReadLine();
         }
     }
