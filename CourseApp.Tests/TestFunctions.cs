@@ -3,14 +3,8 @@ using Xunit;
 
 namespace CourseApp.Tests
 {
-    public class DemoTest
+    public class TestFunctions
     {
-        [Fact]
-        public void Test1()
-        {
-            Assert.True(true);
-        }
-
         [Theory]
         [InlineData(-2.5, 3.4, 3.5, 6.5, 0.6)]
         public void TestTaskA(double a, double b, double xn, double xk, double dk)

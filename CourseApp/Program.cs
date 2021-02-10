@@ -55,6 +55,18 @@ namespace CourseApp
             return res;
         }
 
+        public static int[] DatesDifference(DateTime dateOfBirth, DateTime today)
+        {
+            int daysDiff = int.Parse((today - dateOfBirth).TotalDays.ToString());
+
+            int yearsDiff = daysDiff / 365;
+            int monthsDiff = (daysDiff % 365) / 31;
+            daysDiff = (daysDiff % 365) % 30;
+
+            int[] res = new int[] { yearsDiff, monthsDiff, daysDiff };
+            return res;
+        }
+
         public static void Main(string[] args)
         {
             const double a = -2.5;
@@ -84,8 +96,37 @@ namespace CourseApp
                 Console.WriteLine($"x = {x}, y = {y}");
             }
 
-            Console.WriteLine("Hello World!");
-            Console.ReadLine();
+            // Class Task
+            Console.WriteLine("\n--------- Class ---------");
+            Computer acer = new Computer();
+            Computer apple = new Computer("Apple");
+            Smartphone applePhone = new Smartphone("Apple", " ");
+            Smartphone honor = new Smartphone("Honor", "Android", 64);
+            Electronic[] electronics = new Electronic[] { acer, apple, applePhone, honor };
+            foreach (var electronic in electronics)
+            {
+                Console.WriteLine(electronic.ToString());
+            }
+
+            acer.SetInfo("Acer", " ", 0);
+            apple.OC = "MacOS";
+            apple.RAM = 3;
+            applePhone.SetInfo("Apple", "a", 1);
+
+            foreach (var electronic in electronics)
+            {
+                Console.WriteLine(electronic.ToString());
+                Console.WriteLine(electronic.Start());
+            }
+
+            // Dates Task
+            Console.WriteLine("\n--------- Dates ---------");
+
+            DateTime today = DateTime.Today;
+            DateTime dateOfBirth = new DateTime(1996, 11, 9);
+
+            int[] res = DatesDifference(dateOfBirth, today);
+            Console.WriteLine(res[0] + " year(s), " + res[1] + " month(s) " + res[2] + " day(s)");
         }
     }
 }
