@@ -60,6 +60,14 @@ namespace CourseApp
                 var (x, y) = i;
                 Console.WriteLine($"x = {x}, y = {y};");
             }
+
+            Console.WriteLine("---------------------------------------");
+            Cat cat1 = new Cat("Муха", 2013, 7, 15,  "Трехцветная");
+            cat1.ShowInfo();
+            Cat cat2 = new Cat("Муха", 2013, 7, 15);
+            cat2.ShowInfo();
+            Cat cat3 = new Cat(2013, 7, 15, "Трехцветная");
+            cat3.ShowInfo();
         }
     }
 }
