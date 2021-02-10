@@ -40,6 +40,36 @@ namespace CourseApp
             return res;
         }
 
+        public static string Age(DateTime brithday, DateTime today)
+        {
+            if (today > brithday)
+            {
+                int year = new DateTime((today - brithday).Ticks).Year - 1;
+                int month = today.Month - brithday.Month;
+                int day = today.Day - brithday.Day;
+                if (day < 0)
+                {
+                    if (month == 0)
+                    {
+                        year--;
+                    }
+
+                    month = today.AddMonths(-brithday.Month).Month - 1;
+                    day = today.AddDays(-brithday.Day).Day + 1;
+                }
+
+                return $"Age: Year:{year} Month: {month} Day: {day}";
+            }
+            else if (today == brithday)
+            {
+                return "The dates are equal";
+            }
+            else
+            {
+                return "The date has not come";
+            }
+        }
+
         public static void Main(string[] args)
         {
             const double a = 2.0;
@@ -61,8 +91,38 @@ namespace CourseApp
                 Console.WriteLine($"x={x}, y={y}");
             }
 
+            Console.WriteLine($"-------------------------------");
             Console.WriteLine("Hello World!");
             Console.WriteLine("Vjacheslav Gvozdev");
+            Console.WriteLine($"--------- Class ---------------\n");
+            Dog dog1 = new Dog();
+            Dog dog2 = new Dog("dog2");
+            Cat cat1 = new Cat("Cat1", " ");
+            Cat cat2 = new Cat("cat2", "abyssinian", 2);
+            Animal[] animals = new Animal[] { dog1, dog2, cat1, cat2 };
+            Array.Sort(animals, new AnimalComparer());
+            foreach (var animal in animals)
+            {
+                Console.WriteLine(animal);
+            }
+
+            Console.WriteLine();
+            dog1.EditInf("dog1", " ", 0);
+            dog2.Breed = "d";
+            dog2.EditAge(3);
+            Console.WriteLine(dog2.GetAge());
+            cat1.EditInf("Cat-1", "a", 1);
+
+            foreach (var animal in animals)
+            {
+                Console.WriteLine(animal);
+                Console.WriteLine(animal.Vois());
+            }
+
+            Console.WriteLine($"---------- Date ---------------\n");
+            DateTime brithday = new DateTime(2001, 7, 14);
+            DateTime today = DateTime.Today;
+            Console.WriteLine(Age(brithday, today));
             Console.ReadLine();
         }
     }
