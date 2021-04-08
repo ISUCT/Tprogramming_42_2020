@@ -1,93 +1,125 @@
 ﻿using System;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace CourseApp
 {
     public class Program
     {
-        public static double Calc(double a, double b, double x)
-        {
-            var numerator = Math.Log(Math.Abs(Math.Pow(b, 2) - Math.Pow(x, 2)), a);
-            var denominator = Math.Abs(Math.Pow(x, 2) - Math.Pow(a, 2));
-            CubeRoot(denominator);
-            var y = numerator / denominator;
-            return y;
-        }
-
-        public static (double x, double y)[] TaskA(double a, double b, double xn, double xk, double dx)
-        {
-            var res = new(double, double)[(int)Math.Ceiling((xk - xn) / dx) + 1];
-            int i = 0;
-            for (var x = xn; x <= xk; x += dx)
-            {
-                var y = Calc(a, b, x);
-                res[i] = (x, y);
-                i++;
-            }
-
-            return res;
-        }
-
-        public static (double x, double y)[] TaskB(double a, double b, double[] xItems)
-        {
-            var res = new(double, double)[xItems.Length];
-            int i = 0;
-            foreach (var x in xItems)
-            {
-                var y = Calc(a, b, x);
-                res[i] = (x, y);
-                i++;
-            }
-
-            return res;
-        }
-
         public static void Main(string[] args)
         {
-            const double a = 2.0;
-            const double b = 1.1;
-            Console.WriteLine($"--------- TASK A --------------");
-            var taskA = TaskA(a, b, 0.08, 1.08, 0.2);
-            foreach (var item in taskA)
+            Console.Write("Введите кол-во героев: ");
+            int number = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine();
+            List<string> type = new List<string>();
+            List<Player> excess = new List<Player>();
+            List<Player> hero = new List<Player>(number);
+            string[] nameArray = new string[20] { "Player_1", "Player_2", "Player_3", "Player_4", "Player_5", "Player_6", "Player_7", "Player_8", "Player_9", "Player_10", "Player_11", "Player_12", "Player_13", "Player_14", "Player_15", "Player_16", "Player_17", "Player_18", "Player_19", "Player_20" };
+            if (number % 2.0 != 0)
             {
-                var(x, y) = item;
-                Console.WriteLine($"x={x}, y={y}");
+                throw new InvalidOperationException("Число героев нечетное");
             }
 
-            Console.WriteLine($"--------- TASK B --------------");
-            double[] xItems = { 0.1, 0.3, 0.4, 0.45, 0.65 };
-            var taskB = TaskB(a, b, xItems);
-            foreach (var item in taskB)
+            for (int i = 0; i < number; i++)
             {
-                var(x, y) = item;
-                Console.WriteLine($"x={x}, y={y}");
+                Random random = new Random();
+                string name = nameArray[random.Next(0, 19)];
+                type.Add(GetHeroType());
+                switch (type[i])
+                {
+                    case "Knight":
+                    hero.Add(new Knight(name));
+                    break;
+                    case "Archer":
+                    hero.Add(new Archer(name));
+                    break;
+                    case "Magician":
+                    hero.Add(new Magician(name));
+                    break;
+                }
             }
 
-            Console.WriteLine("Hello World!");
+            while (number > 1)
+            {
+                bool isExcessHero = false;
+                if (hero.Count % 2.0 != 0)
+                {
+                    excess.Add(hero[hero.Count - 1]);
+                    hero.RemoveAt(hero.Count - 1);
+                    isExcessHero = true;
+                }
 
-            var country1 = new Country();
-            country1.AllInfo();
-            var country2 = new Country(7420, 40, 185.5);
-            country2.AllInfo();
-            country2.Population = 0;
-            var country3 = new Country(13450, 100, 134.5);
-            country3.PopulationInfo();
-            country3.AreaInfo();
-            country3.DensityInfo();
-            var union1 = new Union(5);
-            union1.UnionInfo();
+                for (int i = 0; i < hero.Count; i = i + 2)
+                {
+                    Console.WriteLine($"Игрок: {hero[i].GetName()} класса {type[i]} cила = {hero[i].GetPower()}, ХР = {hero[i].GetHealth()} против Игрока: {hero[i + 1].GetName()} класса {type[i + 1]}, сила = {hero[i + 1].GetPower()} , ХР = {hero[i + 1].GetHealth()}");
+                    Console.ReadKey();
+                    int step = 0;
+                    while (hero[i].GetHealth() > 0 && hero[i + 1].GetHealth() > 0)
+                    {
+                        Console.WriteLine($"{hero[i + step].GetName()} наносит урон игроку {hero[i + 1 - step].GetName()}");
+                        if (!hero[i + step].Frozen)
+                        {
+                            hero[i + 1 - step].GetDamage(hero[i + step].DealDamage(hero[i + step].UseUlt()), type[i + step]);
+                            Thread.Sleep(100);
+                        }
 
-            Console.ReadKey();
+                        Console.WriteLine($"Игрок {hero[i + 1 - step].GetName()}, XP = {hero[i + 1 - step].GetHealth()} ");
+                        step = (step + 1) % 2;
+                        Thread.Sleep(100);
+                    }
+
+                    if (hero[i].GetHealth() <= 0)
+                    {
+                        Console.WriteLine($"Игрок {hero[i + 1].GetName()} победил");
+                        Console.WriteLine();
+                        Console.ReadKey();
+                    }
+
+                    if (hero[i + 1].GetHealth() <= 0)
+                    {
+                        Console.WriteLine($"Игрок {hero[i].GetName()} победил");
+                        Console.WriteLine();
+                        Console.ReadKey();
+                    }
+                }
+
+                if (isExcessHero)
+                {
+                    hero.Add(excess[0]);
+                    excess.RemoveAt(0);
+                    isExcessHero = false;
+                }
+
+                int j = 0;
+                while (j < hero.Count)
+                {
+                    if (hero[j].GetHealth() <= 0)
+                    {
+                        hero.RemoveAt(j);
+                    }
+                    else
+                    {
+                        hero[j].RestoreStats();
+                        j++;
+                    }
+                }
+
+                number = Convert.ToInt16(number / 2.0);
+            }
         }
 
-        public static double CubeRoot(double x)
+        private static string GetHeroType()
         {
-            if (x < 0)
+            Random type = new Random();
+            int typeHero = type.Next(1, 3);
+            switch (typeHero)
                 {
-                    return -Math.Pow(-x, 1d / 5d);
-                }
-            else
-                {
-                    return Math.Pow(x, 1d / 5d);
+                    case 1:
+                    return "Knight";
+                    case 2:
+                    return "Archer";
+                    default:
+                    return "Magician";
                 }
         }
     }

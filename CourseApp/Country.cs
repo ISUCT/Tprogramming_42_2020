@@ -10,7 +10,7 @@ namespace CourseApp
 
         public Country()
         {
-            Console.WriteLine($"Население, площадь и плоность не заданы");
+            Console.WriteLine($"Население, площадь и плотность не заданы");
         }
 
         public Country(int population, int area, double density)
